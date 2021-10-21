@@ -1,5 +1,8 @@
 package com.example.myapp;
 
+import android.graphics.drawable.Drawable;
+import android.widget.ImageView;
+
 import java.io.Serializable;
 
 public class PetItem implements Serializable {
@@ -43,5 +46,5 @@ public class PetItem implements Serializable {
     public String getPopfile() { return popfile; }
 
     public void setPopfile(String popfile) { this.popfile = popfile; }
-}
 
+}
