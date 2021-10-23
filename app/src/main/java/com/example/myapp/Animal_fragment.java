@@ -26,7 +26,6 @@ import java.util.ArrayList;
 public class Animal_fragment extends Fragment implements View.OnClickListener {
 
     private Button Btn_search;
-
     private RecyclerView recyclerView;
     private CustomAdapter adapter;
     private LinearLayoutManager manager;
