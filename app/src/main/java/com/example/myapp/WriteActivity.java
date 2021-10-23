@@ -25,6 +25,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
@@ -49,6 +50,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
 public class WriteActivity extends AppCompatActivity {
     String userName,userID;
@@ -219,9 +221,11 @@ public class WriteActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onPermissionDenied(ArrayList<String> deniedPermissions) {
-                // 권한 요청 실패
+            public void onPermissionDenied(List<String> deniedPermissions) {
+
             }
+
+
         };
 
         TedPermission.with(this)

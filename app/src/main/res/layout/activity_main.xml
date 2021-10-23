@@ -22,6 +22,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:onClick="OnClick"
+            android:textSize="10dp"
             android:text="home"/>
         <Button
             android:id="@+id/btn_ani"
@@ -29,6 +30,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:onClick="OnClick"
+            android:textSize="10dp"
             android:text="ani"/>
         <Button
             android:id="@+id/btn_health"
@@ -36,6 +38,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:onClick="OnClick"
+            android:textSize="10dp"
             android:text="health"/>
         <Button
             android:id="@+id/btn_hos"
@@ -43,6 +46,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:onClick="OnClick"
+            android:textSize="10dp"
             android:text="hos"/>
 
     </LinearLayout>

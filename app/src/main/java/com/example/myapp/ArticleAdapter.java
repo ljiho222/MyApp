@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.ImageButton;
@@ -301,7 +302,7 @@ public class ArticleAdapter extends RecyclerView.Adapter<ArticleAdapter.CustomVi
 
         protected LinearLayout linearDelete;
         protected TextView textViewUserName, textViewContent, textViewTheNumberOfLovers, textViewEndDate;
-        protected ImageButton buttonUser, buttonDelete, buttonAddLover, buttonAddComment, buttonAddReporter;
+        protected Button buttonUser, buttonDelete, buttonAddLover, buttonAddComment, buttonAddReporter;
         protected ImageView imageView;
         protected CardView mView;
 
