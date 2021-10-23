@@ -10,6 +10,9 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+
+import com.bumptech.glide.Glide;
+
 import java.util.ArrayList;
 
 public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.CustomViewHolder> {
@@ -20,16 +23,18 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.CustomView
 
     public class CustomViewHolder extends RecyclerView.ViewHolder {
 
-        private TextView happenPlacetxt,kindCdtxt,sexCdtxt;
-        private ImageView popfileimg;
+        private TextView happenPlacetxt,kindCdtxt,sexCdtxt, popfileimg;
+        private ImageView popimg;
         public CustomViewHolder(View view) {
             super(view);
             this.happenPlacetxt = (TextView) view.findViewById(R.id.happenPlace);
             this.kindCdtxt = (TextView) view.findViewById(R.id.kindCd);
             this.sexCdtxt = (TextView) view.findViewById(R.id.sexCd);
-            this.popfileimg = (ImageView) view.findViewById(R.id.popfile);
+            this.popfileimg = (TextView) view.findViewById(R.id.popfile);
+            this.popimg = (ImageView) view.findViewById(R.id.popimg);
         }
     }
+
 
 
     public CustomAdapter(Context context, ArrayList<PetItem> items) {
@@ -54,8 +59,8 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.CustomView
         viewholder.happenPlacetxt.setText(mList.get(position).getHappenPlace());
         viewholder.kindCdtxt.setText(mList.get(position).getKindCd());
         viewholder.sexCdtxt.setText(mList.get(position).getSexCd());
-        //viewholder.popfileimg.setImageResource(mList.get(position).getPopfile());
 
+        Glide.with(viewholder.itemView).load(mList.get(position).getPopfile()).into(viewholder.popimg);
     }
 
     @Override

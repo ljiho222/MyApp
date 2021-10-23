@@ -136,8 +136,7 @@ public class Animal_fragment extends Fragment implements View.OnClickListener {
                         } else if (tag.equals("popfile")){
                             xpp.next();
                             item.setPopfile(xpp.getText());
-                            Log.d("image",xpp.getText());
-                            //Glide.with(this).load(xpp.getText()).into(popfile);
+                            //Log.d("image",xpp.getText());
                             buffer.append(xpp.getText());
                             buffer.append("\n");
                         }
