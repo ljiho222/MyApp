@@ -30,7 +30,7 @@ public class Animal_fragment extends Fragment implements View.OnClickListener {
     private CustomAdapter adapter;
     private LinearLayoutManager manager;
 
-    ArrayList<PetItem> list = null;
+    ArrayList<PetItem> list_pet = null;
     PetItem item = null;
     private String mykey = "rg0WWVl2HctjIbFCkWtKMl801PsVp%2F14tDW83rzRoLQ58R7SWNhglK2eScq9AeL2d3%2FsdGmrsNacu3Z4RPNsuA%3D%3D";
 
@@ -67,9 +67,9 @@ public class Animal_fragment extends Fragment implements View.OnClickListener {
                             @Override
                             public void run() {
 
-                                if(list.isEmpty() == false || list.size() != 0) {
-                                    Log.d("list_check", list.size() + "");
-                                    adapter = new CustomAdapter(getActivity().getApplicationContext(), list);
+                                if(list_pet.isEmpty() == false || list_pet.size() != 0) {
+                                    Log.d("list_check", list_pet.size() + "");
+                                    adapter = new CustomAdapter(getActivity().getApplicationContext(), list_pet);
                                     recyclerView.setAdapter(adapter);
                                     adapter.notifyDataSetChanged();
                                 }
@@ -108,7 +108,7 @@ public class Animal_fragment extends Fragment implements View.OnClickListener {
             while( eventType != XmlPullParser.END_DOCUMENT ){
                 switch( eventType ){
                     case XmlPullParser.START_DOCUMENT:
-                        list = new ArrayList<PetItem>();
+                        list_pet = new ArrayList<PetItem>();
                         break;
 
                     case XmlPullParser.START_TAG:
@@ -148,7 +148,7 @@ public class Animal_fragment extends Fragment implements View.OnClickListener {
 
                         if(tag.equals("item") && item != null){
                             Log.d("adapter_address_check", item.getHappenPlace());
-                            list.add(item);
+                            list_pet.add(item);
                         }
                         break;
                 }
