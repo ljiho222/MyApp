@@ -90,7 +90,7 @@ public class Animal_fragment extends Fragment implements View.OnClickListener {
     private void getXmlData(){
         StringBuffer buffer=new StringBuffer();
 
-        String queryUrl="http://openapi.animal.go.kr/openapi/service/rest/abandonmentPublicSrvc/abandonmentPublic?bgnde=20140301&endde=20140430&pageNo=1&numOfRows=10&ServiceKey=" + mykey ;//+ "&clCd=31" + "&numOfRows=20";
+        String queryUrl="http://openapi.animal.go.kr/openapi/service/rest/abandonmentPublicSrvc/abandonmentPublic?bgnde=20140301&endde=20140430&pageNo=1&numOfRows=30&ServiceKey=" + mykey ;//+ "&clCd=31" + "&numOfRows=20";
 
         //Log.d("TAG",queryUrl);
 

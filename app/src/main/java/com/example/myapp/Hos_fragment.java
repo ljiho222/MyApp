@@ -85,7 +85,7 @@ public class Hos_fragment extends Fragment implements View.OnClickListener {
     private void getXmlData(){
         StringBuffer buffer=new StringBuffer();
 
-        String queryUrl="http://data.ulsan.go.kr/rest/ulsananimal/getUlsananimalList?ServiceKey="+ mykey + "&numOfRows=10";
+        String queryUrl="http://data.ulsan.go.kr/rest/ulsananimal/getUlsananimalList?ServiceKey="+ mykey + "&numOfRows=30";
         //String queryUrl = "http://openapi.jeonju.go.kr/rest/dongmulhospitalservice/getDongMulHospital?ServiceKey=" + mykey + "&pageNo=1&numOfRows=10";
         Log.d("TAG",queryUrl);
 
