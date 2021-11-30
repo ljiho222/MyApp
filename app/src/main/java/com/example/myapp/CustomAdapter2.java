@@ -22,7 +22,7 @@ public class CustomAdapter2 extends RecyclerView.Adapter<CustomAdapter2.CustomVi
 
         public CustomViewHolder(View view) {
             super(view);
-            this.guguntxt = (TextView) view.findViewById(R.id.gugun);
+            //this.guguntxt = (TextView) view.findViewById(R.id.gugun);
             this.addresstxt = (TextView) view.findViewById(R.id.address);
             this.entIdtxt = (TextView) view.findViewById(R.id.entId);
             this.titletxt = (TextView) view.findViewById(R.id.title);
@@ -50,7 +50,7 @@ public class CustomAdapter2 extends RecyclerView.Adapter<CustomAdapter2.CustomVi
     @Override
     public void onBindViewHolder(@NonNull CustomViewHolder viewholder, int position) {
 
-        viewholder.guguntxt.setText(mList.get(position).getGugun());
+       //viewholder.guguntxt.setText(mList.get(position).getGugun());
         viewholder.addresstxt.setText(mList.get(position).getAddress());
         viewholder.entIdtxt.setText(mList.get(position).getEntId());
         viewholder.titletxt.setText(mList.get(position).getTitle());

@@ -7,14 +7,18 @@ import java.io.Serializable;
 
 public class PetItem implements Serializable {
 
-    String happenPlace,kindCd,sexCd,popfile;
+    String happenPlace, kindCd, sexCd, popfile, processState, noticeSdt, specialMark;
 
-    public PetItem(String happenPlace, String kindCd, String sexCd, String popfile) {
+    public PetItem(String happenPlace, String kindCd, String sexCd, String popfile, String processState, String noticeSdt, String specialMark) {
         this.happenPlace = happenPlace;
         this.kindCd = kindCd;
         this.sexCd = sexCd;
         this.popfile = popfile;
+        this.processState = processState;
+        this.noticeSdt = noticeSdt;
+        this.specialMark = specialMark;
     }
+
     public PetItem() {
 
     }
@@ -46,5 +50,18 @@ public class PetItem implements Serializable {
     public String getPopfile() { return popfile; }
 
     public void setPopfile(String popfile) { this.popfile = popfile; }
+
+    public String getProcessState() { return processState; }
+
+    public void setProcessState(String processState) { this.processState = processState; }
+
+    public String getNoticeSdt() { return noticeSdt; }
+
+    public void setNoticeSdt(String noticeSdt) { this.noticeSdt = noticeSdt; }
+
+    public  String getSpecialMark() { return specialMark; }
+
+    public void setSpecialMark(String specialMark) { this.specialMark = specialMark; }
+
 
 }

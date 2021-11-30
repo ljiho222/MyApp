@@ -1,23 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:orientation="vertical"
     android:layout_height="wrap_content"
-    android:layout_margin="15dp">
+    android:layout_margin="5dp"
+    android:orientation="vertical">
 
     <androidx.cardview.widget.CardView
+        android:id="@+id/pet_card"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp"
+        android:layout_marginLeft="1dp"
+        android:layout_marginRight="1dp"
+        android:layout_marginTop="0.5dp"
         app:cardBackgroundColor="#ffffff"
         app:cardCornerRadius="5dp"
-        app:contentPadding="15dp">
+        app:contentPadding="5dp">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
+
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
@@ -26,12 +27,46 @@
                 <TextView
                     android:id="@+id/popfile"
                     android:layout_width="1dp"
-                    android:layout_height="wrap_content"/>
+                    android:layout_height="1dp" />
 
                 <ImageView
                     android:id="@+id/popimg"
-                    android:layout_width="100dp"
-                    android:layout_height="wrap_content"/>
+                    android:layout_width="150dp"
+                    android:layout_height="150dp"
+                    android:layout_centerHorizontal="true"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="1dp"
+                        android:text="품종"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="1dp"
+                        android:text="입양상태" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="1dp"
+                        android:text="성별" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="1dp"
+                        android:text="공고일"/>
+
+                </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -40,31 +75,35 @@
                     android:orientation="vertical">
 
                     <TextView
-                        android:id="@+id/happenPlace"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
-
-                    <TextView
                         android:id="@+id/kindCd"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
+                        android:layout_height="wrap_content"
+                        android:layout_margin="1dp"/>
+
+                    <TextView
+                        android:id="@+id/processState"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="1dp"/>
 
                     <TextView
                         android:id="@+id/sexCd"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
+                        android:layout_height="wrap_content"
+                        android:layout_margin="1dp"/>
+
+                    <TextView
+                        android:id="@+id/noticeSdt"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="1dp" />
 
                 </LinearLayout>
 
             </LinearLayout>
 
-        </LinearLayout>
 
     </androidx.cardview.widget.CardView>
-
-
-
-
 
 
 </LinearLayout>
