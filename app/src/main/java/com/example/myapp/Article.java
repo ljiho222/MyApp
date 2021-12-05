@@ -9,10 +9,15 @@ public class Article {
     private String userID;
     private String userName;
     private String content;
-    //private List<String> lovers;
+    private String age;
+    private String title;
+    private String name;
+    private String sex;
+
+    private List<String> lovers;
     //private List<String> reporters;
     private String image;
-    //private String endDate;
+    private String endDate;
     //private int temp;
 
     Article() {
@@ -20,20 +25,27 @@ public class Article {
         userID = "";
         content = "";
         image = "";
-        //lovers = new ArrayList<>();
+        age="";
+        title="";
+        name="";
+        sex="";
+        endDate="";
+        lovers = new ArrayList<>();
         //reporters = new ArrayList<>();
     }
 
-    Article(String articleID, String userID, String userName,String content, String image) {
+    Article(String articleID, String userID, String userName,String content, String age, String title, String name, String sex, String image,String endDate) {
         this.articleID = articleID;
         this.userID = userID;
         this.userName=userName;
         this.content = content;
+        this.age=age;
+        this.title=title;
+        this.name=name;
+        this.sex=sex;
         this.image = image;
-       // this.temp = temp;
-        //lovers = new ArrayList<>();
-        //reporters = new ArrayList<>();
-        //this.endDate = endDate;
+        this.endDate=endDate;
+
     }
 
     public String getArticleID() {
@@ -60,32 +72,42 @@ public class Article {
         return content;
     }
 
-    public void setContent(String content) {
-        this.content = content;
+    public void setContent(String content) { this.content = content; }
+
+    public String getAge() {
+        return age;
     }
 
-   /* public int getTemp() {
-        return temp;
+    public void setAge(String age) {
+        this.age = age;
     }
 
-    public void setTemp(int temp) {
-        this.temp = temp;
-    }*/
-/*public List<String> getLovers() {
-        return lovers;
+
+    public String getTitle() {
+        return title;
     }
 
-    public void setLovers(List<String> lovers) {
-        this.lovers = lovers;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
-    public List<String> getReporters() {
-        return reporters;
+
+    public String getName() {
+        return name;
     }
 
-    public void setReporters(List<String> reporters) {
-        this.reporters = reporters;
-    }*/
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getSex() {
+        return sex;
+    }
+
+    public void setSex(String sex) {
+        this.sex = sex;
+    }
+
 
     public String getImage() {
         return image;
@@ -95,27 +117,7 @@ public class Article {
         this.image = image;
     }
 
-   /* public String getEndDate() {
-        return endDate;
-    }
+    public String getEndDate(){return endDate;}
 
-    public void setEndDate(String endDate) {
-        this.endDate = endDate;
-    }
-
-    public boolean addLover(String loverID) {
-        if (lovers.remove(loverID) == false) {
-            lovers.add(loverID);
-            return true;
-        }
-        return false;
-    }
-
-    public boolean addReporter(String reporterID) {
-        if (reporters.contains(reporterID) == false) {
-            reporters.add(reporterID);
-            return true;
-        }
-        return false;
-    }*/
+    public void setEndDate(String endDate) { this.endDate = endDate;  }
 }

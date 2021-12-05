@@ -1,6 +1,7 @@
 package com.example.myapp;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
@@ -8,6 +9,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+
+import java.util.Stack;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -20,7 +23,7 @@ public class MainActivity extends AppCompatActivity {
     private Hos_fragment fragmentHos;
 
     private FragmentTransaction transaction;
-
+    public static Stack<Fragment> fragmentStack;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,7 +36,6 @@ public class MainActivity extends AppCompatActivity {
         //user = (User)this.getIntent().getSerializableExtra("userInfo");
         //Log.e("###", userID+"__"+userName);
 
-        fragmentManager = getSupportFragmentManager();
 
         fragmentMain= new Main_fragment();
         fragmentAni= new Animal_fragment();
@@ -44,6 +46,10 @@ public class MainActivity extends AppCompatActivity {
         bundle.putString("userName", userName);
         bundle.putString("userID",userID);
 
+        fragmentStack = new Stack<>();
+        fragmentStack.push(fragmentMain);
+
+        fragmentManager = getSupportFragmentManager();
         transaction=fragmentManager.beginTransaction();
         transaction.replace(R.id.framelayout,fragmentMain).commitAllowingStateLoss();
         fragmentMain.setArguments(bundle);
@@ -77,6 +83,15 @@ public class MainActivity extends AppCompatActivity {
                 transaction.replace(R.id.framelayout, fragmentHos).commitAllowingStateLoss();
                 break;
 
+        }
+    }
+    public void onBackPressed(){
+        if(!fragmentStack.isEmpty()){
+            Fragment nextFragment = fragmentStack.pop();
+            fragmentManager.beginTransaction().replace(R.id.framelayout, nextFragment).commit();
+            System.out.println("[TESTING >>] " + fragmentStack.size());
+        }else {
+            super.onBackPressed();
         }
     }
 }

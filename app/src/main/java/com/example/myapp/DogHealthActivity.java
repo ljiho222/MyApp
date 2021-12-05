@@ -78,7 +78,7 @@ public class DogHealthActivity extends AppCompatActivity  {
 
     private void painfunc(TextView txt) {
 
-        Log.e("##","str="+str+"name"+txt.getText().toString());
+       // Log.e("##","str="+str+"name"+txt.getText().toString());
 
         arrayList=new ArrayList<>();
         painAdapter=new PainAdapter(arrayList);

@@ -3,6 +3,8 @@ package com.example.myapp;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.FileProvider;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.loader.content.CursorLoader;
 
 import android.Manifest;
@@ -27,6 +29,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -53,14 +57,20 @@ import java.util.Date;
 import java.util.List;
 
 public class WriteActivity extends AppCompatActivity {
+    //User
     String userName,userID;
-    Integer position1;
-    private EditText contents;
-    private Button btn_save;
+
+    //Article
+    private EditText contents,title,name,age;
+    private RadioGroup radioGroup;
     private Button camera;
+    private ImageView selectedImage;
+    private Button btn_save,btn_back;
+
+
+    //Database
     private FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
     private DatabaseReference databaseReference = firebaseDatabase.getReference();
-    private ImageView selectedImage;
     private UploadTask uploadTask;
     private Uri file;
     private FirebaseStorage storage = FirebaseStorage.getInstance();
@@ -69,28 +79,46 @@ public class WriteActivity extends AppCompatActivity {
     private Uri downloadUri;
     private String imageFilePath;
     private Uri cameraUri;
+
     private Calendar c = Calendar.getInstance();
     private Article article;
-    private SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMddHHmmss");
+    private static SimpleDateFormat dateFormat;
     private Long now = System.currentTimeMillis();
     private static final int PICK_FROM_CAMERA = 0;
     private static final int PICK_FROM_ALBUM = 1;
     private ProgressDialog pdialog=null;
+
+    //fragment
+    private FragmentManager fragmentManager;
+    private Main_fragment fragmentMain;
+    private FragmentTransaction transaction;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_write);
 
+        age=findViewById(R.id.age);
+        name=findViewById(R.id.name);
+        title=findViewById(R.id.title);
         contents = findViewById(R.id.contents);
+        radioGroup=findViewById(R.id.radioGroup);
+
         btn_save = findViewById(R.id.btn_save);
+        btn_back=findViewById(R.id.btn_back);
+
         camera = this.findViewById(R.id.camera);
         selectedImage = findViewById(R.id.selectedImage);
 
+        //activity to fragment
+        fragmentManager = getSupportFragmentManager();
+        fragmentMain= new Main_fragment();
+        transaction=fragmentManager.beginTransaction();
+
+        //for user info
         Intent intent = getIntent();
         userName=intent.getStringExtra("userName");
         userID=intent.getStringExtra("userID");
-        //Log.e("###", userID+" "+userName);
 
         //image upload
         tedPermission();
@@ -100,7 +128,16 @@ public class WriteActivity extends AppCompatActivity {
                 makeDialog();
             }
         });
-
+/*
+        //back 버튼->main fragment로 이동
+        btn_back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                transaction.replace(R.id.framelayout,fragmentMain);
+                transaction.addToBackStack(null);
+                transaction.commit();
+            }
+        });*/
 
         //저장 버튼 -> article 생성
         btn_save.setOnClickListener(new View.OnClickListener() {
@@ -114,7 +151,13 @@ public class WriteActivity extends AppCompatActivity {
                 btn_save.setEnabled(false);
                 Long now1 = System.currentTimeMillis();
 
-                article = new Article(Long.toString(now1), userID, userName, contents.getText().toString(), "");
+
+                int id = radioGroup.getCheckedRadioButtonId();
+                RadioButton rb =(RadioButton)findViewById(id);
+
+                Log.e("##",getCurrentDate());
+                article = new Article(Long.toString(now1), userID, userName, contents.getText().toString(), age.getText().toString(),
+                        title.getText().toString(), name.getText().toString(),rb.getText().toString(), "", getCurrentDate());
                 if(file!=null){
                     upload(file, now1);
                 }
@@ -125,11 +168,16 @@ public class WriteActivity extends AppCompatActivity {
         });
     }
 
+    public static String getCurrentDate(){
+        dateFormat = new SimpleDateFormat("yyyyMMdd");
+        Date today = Calendar.getInstance().getTime();
+        return dateFormat.format(today);
+    }
     public void uploadArticle(Article article,Long now1){
         databaseReference.child("Articles").child(Long.toString(now1)).setValue(article).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
-                Log.v("##", "finish");
+                //Log.v("##", "finish");
                 Toast.makeText(WriteActivity.this,"업로드 완료",Toast.LENGTH_SHORT).show();
                 finish();
             }
@@ -333,10 +381,10 @@ public class WriteActivity extends AppCompatActivity {
                 else{
                     exifDegree=0;
                 }
-                Log.e("errorWrite","여기");
+                //Log.e("errorWrite","여기");
                 bitmap=rotate(bitmap,exifDegree);
                 selectedImage.setImageBitmap(bitmap);
-                Log.e("errorWrite","여기통과");
+                //Log.e("errorWrite","여기통과");
                 String imageSaveUri=MediaStore.Images.Media.insertImage(getContentResolver(),bitmap,"사진 저장","저장되었다");
                 Uri uri = Uri.parse(imageSaveUri);
                 file = uri;

@@ -27,7 +27,10 @@ import com.bumptech.glide.Glide;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import org.w3c.dom.Text;
+
 import java.util.ArrayList;
+import java.util.Timer;
 
 public class ArticleAdapter extends RecyclerView.Adapter<ArticleAdapter.CustomViewHolder> implements Filterable {
 
@@ -65,7 +68,10 @@ public class ArticleAdapter extends RecyclerView.Adapter<ArticleAdapter.CustomVi
         //유저 닉네임, 게시글 내용
         holder.textViewUserName.setText(article.getUserName());
         holder.textViewContent.setText(article.getContent());
-        Log.e("##",article.getUserID()+" "+article.getUserName());
+        holder.textViewName.setText(article.getName());
+        holder.textViewTitle.setText(article.getTitle());
+
+        //Log.e("##",article.getUserID()+" "+article.getUserName());
         //Log.e("자유게시판 사진", article.getImage().toString());
         //Log.e("arrayList",""+article.getImage().equals(""));
 
@@ -80,13 +86,12 @@ public class ArticleAdapter extends RecyclerView.Adapter<ArticleAdapter.CustomVi
             holder.imageView.setVisibility(View.GONE);
         }
 
-        //쪽지
 
         //삭제
         addDelete(holder, article);
 
         //날짜
-        //addDate(holder, article);
+        addDate(holder, article);
 
         //좋아요
         //addLove(holder, article);
@@ -97,7 +102,7 @@ public class ArticleAdapter extends RecyclerView.Adapter<ArticleAdapter.CustomVi
         //신고
         //addReport(holder, article);
 
-        //clickItem(holder,article);
+        clickItem(holder,article);
 
         DisplayMetrics displayMetrics = new DisplayMetrics();
         ((Activity) holder.itemView.getContext()).getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
@@ -110,17 +115,17 @@ public class ArticleAdapter extends RecyclerView.Adapter<ArticleAdapter.CustomVi
 
 
     //아이템 클릭
-    /*private void clickItem(@NonNull CustomViewHolder holder, final Article article) {
-        holder.textViewContent.setOnClickListener(new View.OnClickListener() {
+    private void clickItem(@NonNull CustomViewHolder holder, final Article article) {
+        holder.mView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(v.getContext(), CommentActivity.class);
-                intent.putExtra("userInformation", user);
-                intent.putExtra("articleInformation", article.getArticleID());
+                intent.putExtra("userName", article.getUserName());
+                intent.putExtra("articleID", article.getArticleID());
                 v.getContext().startActivity(intent);
             }
         });
-    }*/
+    }
 
     //삭제
     private void addDelete(@NonNull CustomViewHolder holder, final Article article) {
@@ -156,12 +161,12 @@ public class ArticleAdapter extends RecyclerView.Adapter<ArticleAdapter.CustomVi
     }
 
     //날짜
-    /*private void addDate(@NonNull CustomViewHolder holder, final Article article) {
+    private void addDate(@NonNull CustomViewHolder holder, final Article article) {
         String date = article.getEndDate();
         holder.textViewEndDate.setText(date.substring(4,6) + "월 " + date.substring(6,8) +
-                "일 " + date.substring(8,10) + ":" + date.substring(10, 12));
+                "일 ");
     }
-
+/*
     //좋아요
     private void addLove(@NonNull final CustomViewHolder holder, final Article article) {
         holder.textViewTheNumberOfLovers.setText(" + " + article.getLovers().size());
@@ -199,7 +204,7 @@ public class ArticleAdapter extends RecyclerView.Adapter<ArticleAdapter.CustomVi
                 });
             }
         });
-    }*/
+    }
 
     //댓글
     /*private void addComment(@NonNull CustomViewHolder holder, final Article article) {
@@ -302,6 +307,7 @@ public class ArticleAdapter extends RecyclerView.Adapter<ArticleAdapter.CustomVi
 
         protected LinearLayout linearDelete;
         protected TextView textViewUserName, textViewContent, textViewTheNumberOfLovers, textViewEndDate;
+        protected TextView textViewTitle,textViewName;
         protected Button buttonUser, buttonDelete, buttonAddLover, buttonAddComment, buttonAddReporter;
         protected ImageView imageView;
         protected CardView mView;
@@ -313,9 +319,11 @@ public class ArticleAdapter extends RecyclerView.Adapter<ArticleAdapter.CustomVi
 
             this.textViewUserName = (TextView)itemView.findViewById(R.id.textViewUserName);
             this.textViewContent = (TextView)itemView.findViewById(R.id.textViewContent);
-            //this.textViewTheNumberOfLovers = (TextView)itemView.findViewById(R.id.textViewTheNumberOfLovers);
-            //this.textViewEndDate = (TextView)itemView.findViewById(R.id.textViewEndDate);
+            this.textViewName=(TextView)itemView.findViewById(R.id.textViewName);
+            this.textViewTitle=(TextView)itemView.findViewById(R.id.textViewTitle);
+            this.textViewEndDate = (TextView)itemView.findViewById(R.id.textViewEndDate);
 
+            //this.textViewTheNumberOfLovers = (TextView)itemView.findViewById(R.id.textViewTheNumberOfLovers);
             //this.buttonUser = (Button)itemView.findViewById(R.id.buttonUser);
             this.buttonDelete = itemView.findViewById(R.id.buttonDelete);
             //this.buttonAddLover = (Button)itemView.findViewById(R.id.buttonAddLover);
