@@ -23,15 +23,19 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.CustomView
 
     public class CustomViewHolder extends RecyclerView.ViewHolder {
 
-        private TextView happenPlacetxt,kindCdtxt,sexCdtxt, popfileimg;
+        private TextView kindCdtxt,sexCdtxt, popfileimg, processStatetxt, noticeSdttxt;
+        //, specialMarktxt,happenPlacetxt,;
         private ImageView popimg;
         public CustomViewHolder(View view) {
             super(view);
-            this.happenPlacetxt = (TextView) view.findViewById(R.id.happenPlace);
+            //this.happenPlacetxt = (TextView) view.findViewById(R.id.happenPlace);
             this.kindCdtxt = (TextView) view.findViewById(R.id.kindCd);
             this.sexCdtxt = (TextView) view.findViewById(R.id.sexCd);
             this.popfileimg = (TextView) view.findViewById(R.id.popfile);
             this.popimg = (ImageView) view.findViewById(R.id.popimg);
+            this.processStatetxt = (TextView) view.findViewById(R.id.processState);
+            this.noticeSdttxt = (TextView) view.findViewById(R.id.noticeSdt);
+            //this.specialMarktxt = (TextView) view.findViewById(R.id.specialMark);
         }
     }
 
@@ -46,7 +50,6 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.CustomView
 
     @Override
     public CustomViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int viewType) {
-
         View view = mInflate.inflate(R.layout.pet_infor_layout, viewGroup, false);
         CustomViewHolder viewHolder = new CustomViewHolder(view);
         return viewHolder;
@@ -56,9 +59,13 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.CustomView
     @Override
     public void onBindViewHolder(@NonNull CustomViewHolder viewholder, int position) {
 
-        viewholder.happenPlacetxt.setText(mList.get(position).getHappenPlace());
+        //viewholder.happenPlacetxt.setText(mList.get(position).getHappenPlace());
         viewholder.kindCdtxt.setText(mList.get(position).getKindCd());
         viewholder.sexCdtxt.setText(mList.get(position).getSexCd());
+        viewholder.processStatetxt.setText(mList.get(position).getProcessState());
+        viewholder.noticeSdttxt.setText(mList.get(position).getNoticeSdt());
+        viewholder.popfileimg.setText(mList.get(position).getPopfile());
+        //viewholder.specialMarktxt.setText(mList.get(position).getSpecialMark());
 
         Glide.with(viewholder.itemView).load(mList.get(position).getPopfile()).into(viewholder.popimg);
     }
@@ -67,6 +74,5 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.CustomView
     public int getItemCount() {
         return (null != mList ? mList.size() : 0);
     }
-
 
 }

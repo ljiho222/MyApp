@@ -3,11 +3,15 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/samsung/AndroidStudioProjects/MyApp/app/src/main/res/drawable/spinner_background.xml" value="0.1" />
         <entry key="..\:/Users/samsung/AndroidStudioProjects/MyApp/app/src/main/res/layout/activity_animal_fragment.xml" value="0.1" />
         <entry key="..\:/Users/samsung/AndroidStudioProjects/MyApp/app/src/main/res/layout/activity_hos_fragment.xml" value="0.11367753623188406" />
+        <entry key="..\:/Users/samsung/AndroidStudioProjects/MyApp/app/src/main/res/layout/activity_login.xml" value="0.12107396149949341" />
         <entry key="..\:/Users/samsung/AndroidStudioProjects/MyApp/app/src/main/res/layout/activity_main.xml" value="0.1" />
+        <entry key="..\:/Users/samsung/AndroidStudioProjects/MyApp/app/src/main/res/layout/activity_main_fragment.xml" value="0.1322463768115942" />
+        <entry key="..\:/Users/samsung/AndroidStudioProjects/MyApp/app/src/main/res/layout/activity_pet_card.xml" value="0.2" />
         <entry key="..\:/Users/samsung/AndroidStudioProjects/MyApp/app/src/main/res/layout/hos_infor_layout.xml" value="0.10207700101317123" />
-        <entry key="..\:/Users/samsung/AndroidStudioProjects/MyApp/app/src/main/res/layout/pet_infor_layout.xml" value="0.1" />
+        <entry key="..\:/Users/samsung/AndroidStudioProjects/MyApp/app/src/main/res/layout/pet_infor_layout.xml" value="0.264" />
       </map>
     </option>
   </component>

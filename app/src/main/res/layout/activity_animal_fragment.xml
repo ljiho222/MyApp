@@ -7,12 +7,32 @@
     android:layout_height="match_parent"
     tools:context=".Animal_fragment"
     android:orientation="vertical">
-
-    <Button
-        android:id="@+id/btn_search"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="검 색" />
+        android:orientation="horizontal">
+
+        <Spinner
+            android:id="@+id/spin_city"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_gravity="end"/>
+
+        <Spinner
+            android:id="@+id/spin_sigungu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_gravity="end"/>
+
+        <Button
+            android:id="@+id/btn_aniSearch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="검 색"/>
+
+    </LinearLayout>
 
     <ScrollView
         android:id="@+id/scrollview"

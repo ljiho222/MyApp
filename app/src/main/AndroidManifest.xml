@@ -22,8 +22,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApp"
         android:usesCleartextTraffic="${cleartextTrafficPermitted}">
-        <activity android:name=".DogHealthActivity"></activity>
-        <activity android:name=".CatHealthActivity" />
+        <activity
+            android:name=".Pet_Card"
+            android:exported="false" />
         <activity android:name=".WriteActivity" />
         <activity android:name=".FindpwActivity" />
         <activity android:name=".LoginActivity" />
