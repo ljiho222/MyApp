@@ -47,6 +47,9 @@ public class MainActivity extends AppCompatActivity {
         transaction=fragmentManager.beginTransaction();
         transaction.replace(R.id.framelayout,fragmentMain).commitAllowingStateLoss();
         fragmentMain.setArguments(bundle);
+
+
+        Log.e("##","main");
     }
 
     public void OnClick(View view) {
