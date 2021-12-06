@@ -36,7 +36,7 @@ public class ArticleAdapter extends RecyclerView.Adapter<ArticleAdapter.CustomVi
 
     private ArrayList<Article> arrayList;
     private ArrayList<Article> unfilteredList;
-    private String userinfo;
+    private String userinfo,userName;
     private User user;
 
     private FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
@@ -53,6 +53,12 @@ public class ArticleAdapter extends RecyclerView.Adapter<ArticleAdapter.CustomVi
     @Override
     public CustomViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
+
+        //login된 user
+
+        userName=((MainActivity)MainActivity.context).userName;
+
+        Log.e("######",userName);
 
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_list_article, parent, false);
         CustomViewHolder holder = new CustomViewHolder(view);
@@ -71,14 +77,10 @@ public class ArticleAdapter extends RecyclerView.Adapter<ArticleAdapter.CustomVi
         holder.textViewName.setText(article.getName());
         holder.textViewTitle.setText(article.getTitle());
 
-        //Log.e("##",article.getUserID()+" "+article.getUserName());
-        //Log.e("자유게시판 사진", article.getImage().toString());
-        //Log.e("arrayList",""+article.getImage().equals(""));
-
 
         // 이미지 추가=> 맞나
         if(!article.getImage().equals("")) {
-            Log.e("arrayList",""+"실행됨");
+            //Log.e("arrayList",""+"실행됨");
             holder.imageView.setVisibility(View.VISIBLE);
             Glide.with(holder.itemView.getContext()).load(article.getImage()).into(holder.imageView);
         }
@@ -93,15 +95,7 @@ public class ArticleAdapter extends RecyclerView.Adapter<ArticleAdapter.CustomVi
         //날짜
         addDate(holder, article);
 
-        //좋아요
-        //addLove(holder, article);
-
-        //댓글
-        //addComment(holder, article);
-
-        //신고
-        //addReport(holder, article);
-
+        //뷰클릭
         clickItem(holder,article);
 
         DisplayMetrics displayMetrics = new DisplayMetrics();
@@ -122,6 +116,7 @@ public class ArticleAdapter extends RecyclerView.Adapter<ArticleAdapter.CustomVi
                 Intent intent = new Intent(v.getContext(), CommentActivity.class);
                 intent.putExtra("userName", article.getUserName());
                 intent.putExtra("articleID", article.getArticleID());
+                intent.putExtra("userInfo",userName);
                 v.getContext().startActivity(intent);
             }
         });
@@ -129,7 +124,8 @@ public class ArticleAdapter extends RecyclerView.Adapter<ArticleAdapter.CustomVi
 
     //삭제
     private void addDelete(@NonNull CustomViewHolder holder, final Article article) {
-        if(article.getUserID().equals(userinfo)) {
+        Log.e("addDelete", String.valueOf(article.getUserID().equals(userName)));
+        if(article.getUserName().equals(userName)) {
             holder.buttonDelete.setVisibility(View.VISIBLE);
             holder.buttonDelete.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -163,110 +159,8 @@ public class ArticleAdapter extends RecyclerView.Adapter<ArticleAdapter.CustomVi
     //날짜
     private void addDate(@NonNull CustomViewHolder holder, final Article article) {
         String date = article.getEndDate();
-        holder.textViewEndDate.setText(date.substring(4,6) + "월 " + date.substring(6,8) +
-                "일 ");
+        holder.textViewEndDate.setText(date.substring(0,4) + "년 " +date.substring(4,6) + "월 " + date.substring(6,8) +"일 ");
     }
-/*
-    //좋아요
-    private void addLove(@NonNull final CustomViewHolder holder, final Article article) {
-        holder.textViewTheNumberOfLovers.setText(" + " + article.getLovers().size());
-
-        if(article.getLovers().contains(user.getUserName())) {
-            holder.buttonAddLover.setBackgroundResource(R.drawable.red_fill_heart);
-        }
-        else {
-            holder.buttonAddLover.setBackgroundResource(R.drawable.red_empty_heart);
-        }
-
-        holder.buttonAddLover.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                databaseReference.child("Articles").child(mUniv).child(article.getArticleID()).addListenerForSingleValueEvent(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                        Article article1 = dataSnapshot.getValue(Article.class);
-                        if (article1.addLover(user.getUserName())) {
-                            holder.buttonAddLover.setBackgroundResource(R.drawable.red_fill_heart);
-                            holder.textViewTheNumberOfLovers.setText(" + " + article1.getLovers().size());
-                        }
-                        else {
-                            holder.buttonAddLover.setBackgroundResource(R.drawable.red_empty_heart);
-                            holder.textViewTheNumberOfLovers.setText(" + " + article1.getLovers().size());
-                        }
-
-                        databaseReference.child("Articles").child(mUniv).child(article.getArticleID()).child("lovers").setValue(article1.getLovers());
-                    }
-
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                    }
-                });
-            }
-        });
-    }
-
-    //댓글
-    /*private void addComment(@NonNull CustomViewHolder holder, final Article article) {
-        holder.buttonAddComment.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(v.getContext(), CommentActivity.class);
-                intent.putExtra("userInformation", user);
-                intent.putExtra("articleInformation", article.getArticleID());
-                v.getContext().startActivity(intent);
-            }
-        });
-    }*/
-
-    //신고
-
-    /*private void addReport(@NonNull CustomViewHolder holder, final Article article) {
-        holder.buttonAddReporter.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(final View v) {
-                new AlertDialog.Builder(v.getContext())
-                        .setTitle("게시글 신고")
-                        .setMessage("해당 게시글을 신고하시겠습니까?")
-                        .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                databaseReference.child("Articles").child(mUniv).child(article.getArticleID()).addListenerForSingleValueEvent(new ValueEventListener() {
-                                    @Override
-                                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                                        Article article1 = dataSnapshot.getValue(Article.class);
-                                        if (article1.addReporter(user.getUserName())) {
-                                            databaseReference.child("Articles").child(mUniv).child(article.getArticleID()).child("reporters").setValue(article1.getReporters());
-                                            Toast.makeText(v.getContext(), "신고 완료되었습니다", Toast.LENGTH_SHORT).show();
-
-                                            if (article1.getReporters().size() == 1) {
-                                                Long now = System.currentTimeMillis();
-                                                RestrictedData restrictedData = new RestrictedData(user.getUserEmail(), article1.getContent());
-                                                databaseReference.child("Restricted").child("Articles").child(Long.toString(now)).setValue(restrictedData);
-                                            }
-                                        }
-                                        else {
-                                            Toast.makeText(v.getContext(), "이미 신고한 게시글입니다", Toast.LENGTH_SHORT).show();
-                                        }
-                                    }
-
-                                    @Override
-                                    public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                                    }
-                                });
-                            }
-                        })
-                        .setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                Toast.makeText(v.getContext(), "취소하였습니다", Toast.LENGTH_SHORT).show();
-                            }
-                        })
-                        .show();
-            }
-        });
-    }*/
 
     @Override
     public int getItemCount() {
@@ -306,9 +200,9 @@ public class ArticleAdapter extends RecyclerView.Adapter<ArticleAdapter.CustomVi
     public class CustomViewHolder extends RecyclerView.ViewHolder {
 
         protected LinearLayout linearDelete;
-        protected TextView textViewUserName, textViewContent, textViewTheNumberOfLovers, textViewEndDate;
+        protected TextView textViewUserName, textViewContent, textViewEndDate;
         protected TextView textViewTitle,textViewName;
-        protected Button buttonUser, buttonDelete, buttonAddLover, buttonAddComment, buttonAddReporter;
+        protected Button buttonUser, buttonDelete;
         protected ImageView imageView;
         protected CardView mView;
 
@@ -322,13 +216,8 @@ public class ArticleAdapter extends RecyclerView.Adapter<ArticleAdapter.CustomVi
             this.textViewName=(TextView)itemView.findViewById(R.id.textViewName);
             this.textViewTitle=(TextView)itemView.findViewById(R.id.textViewTitle);
             this.textViewEndDate = (TextView)itemView.findViewById(R.id.textViewEndDate);
-
-            //this.textViewTheNumberOfLovers = (TextView)itemView.findViewById(R.id.textViewTheNumberOfLovers);
-            //this.buttonUser = (Button)itemView.findViewById(R.id.buttonUser);
             this.buttonDelete = itemView.findViewById(R.id.buttonDelete);
-            //this.buttonAddLover = (Button)itemView.findViewById(R.id.buttonAddLover);
-            //this.buttonAddComment = (Button)itemView.findViewById(R.id.buttonAddComment);
-            //this.buttonAddReporter = (Button)itemView.findViewById(R.id.buttonAddReporter);
+
 
             this.imageView = (ImageView)itemView.findViewById(R.id.imageView);
             this.mView=(CardView)itemView.findViewById(R.id.mArticleView);

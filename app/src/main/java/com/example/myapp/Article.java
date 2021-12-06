@@ -14,8 +14,8 @@ public class Article {
     private String name;
     private String sex;
 
-    private List<String> lovers;
-    //private List<String> reporters;
+    //private List<String> lovers;
+    private List<String> reporters;
     private String image;
     private String endDate;
     //private int temp;
@@ -30,8 +30,8 @@ public class Article {
         name="";
         sex="";
         endDate="";
-        lovers = new ArrayList<>();
-        //reporters = new ArrayList<>();
+        //lovers = new ArrayList<>();
+        reporters = new ArrayList<>();
     }
 
     Article(String articleID, String userID, String userName,String content, String age, String title, String name, String sex, String image,String endDate) {

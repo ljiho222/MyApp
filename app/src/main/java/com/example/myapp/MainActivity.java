@@ -14,6 +14,7 @@ import java.util.Stack;
 
 public class MainActivity extends AppCompatActivity {
 
+    public static Object context;
     String userName,userID;
     private Bundle bundle;
     private FragmentManager fragmentManager;
@@ -30,12 +31,13 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         Intent intent = getIntent();
-
         userName=intent.getStringExtra("userName");
         userID=intent.getStringExtra("userID");
+        
         //user = (User)this.getIntent().getSerializableExtra("userInfo");
         //Log.e("###", userID+"__"+userName);
 
+        context=this;
 
         fragmentMain= new Main_fragment();
         fragmentAni= new Animal_fragment();
@@ -55,7 +57,7 @@ public class MainActivity extends AppCompatActivity {
         fragmentMain.setArguments(bundle);
 
 
-        Log.e("##","main");
+        //Log.e("##","main");
     }
 
     public void OnClick(View view) {
