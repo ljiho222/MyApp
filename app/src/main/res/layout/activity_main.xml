@@ -6,48 +6,89 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="top"
+        android:orientation="horizontal"
+        app:layout_constraintBaseline_toTopOf="parent">
+
+        <TextView
+            android:layout_width="30dp"
+            android:layout_height="match_parent"/>
+
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/btn_main"
+            android:layout_width="2dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:onClick="OnClick"
+            android:src="@drawable/home_img"
+            android:scaleType="fitXY"
+            android:background="@color/white"
+            android:tint="@color/lightgray"
+            android:padding="15dp"/>
+
+        <TextView
+            android:layout_width="33dp"
+            android:layout_height="match_parent"/>
+
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/btn_ani"
+            android:layout_width="2dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:onClick="OnClick"
+            android:src="@drawable/pet_img"
+            android:scaleType="fitXY"
+            android:background="@color/white"
+            android:tint="@color/lightgray"
+            android:padding="15dp"/>
+
+        <TextView
+            android:layout_width="33dp"
+            android:layout_height="match_parent"/>
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/btn_health"
+            android:layout_width="2dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:onClick="OnClick"
+            android:src="@drawable/smile_img"
+            android:scaleType="fitXY"
+            android:background="@color/white"
+            android:tint="@color/lightgray"
+            android:padding="15dp"/>
+
+        <TextView
+            android:layout_width="33dp"
+            android:layout_height="match_parent"/>
+
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/btn_hos"
+            android:layout_width="2dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:onClick="OnClick"
+            android:src="@drawable/hos_img"
+            android:scaleType="fitXY"
+            android:background="@color/white"
+            android:tint="@color/lightgray"
+            android:padding="15dp"/>
+
+
+        <TextView
+            android:layout_width="30dp"
+            android:layout_height="match_parent"/>
+    </LinearLayout>
+
     <FrameLayout
         android:id="@+id/framelayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="bottom"
-        android:orientation="horizontal"
-        app:layout_constraintBaseline_toTopOf="parent">
-        <Button
-            android:id="@+id/btn_main"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:onClick="OnClick"
-            android:textSize="10dp"
-            android:text="home"/>
-        <Button
-            android:id="@+id/btn_ani"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:onClick="OnClick"
-            android:textSize="10dp"
-            android:text="ani"/>
-        <Button
-            android:id="@+id/btn_health"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:onClick="OnClick"
-            android:textSize="10dp"
-            android:text="health"/>
-        <Button
-            android:id="@+id/btn_hos"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:onClick="OnClick"
-            android:textSize="10dp"
-            android:text="hos"/>
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/linearLayout"
+        tools:layout_editor_absoluteX="0dp" />
 
-    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
