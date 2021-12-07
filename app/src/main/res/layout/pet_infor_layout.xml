@@ -66,6 +66,12 @@
                         android:layout_margin="1dp"
                         android:text="공고일"/>
 
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="1dp"
+                        android:text="공고번호" />
+
                 </LinearLayout>
 
                 <LinearLayout
@@ -94,6 +100,12 @@
 
                     <TextView
                         android:id="@+id/noticeSdt"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="1dp" />
+
+                    <TextView
+                        android:id="@+id/noticeNo"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_margin="1dp" />

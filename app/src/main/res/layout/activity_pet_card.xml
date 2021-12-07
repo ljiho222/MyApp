@@ -138,6 +138,12 @@
                             android:layout_height="wrap_content"
                             android:layout_margin="1dp" />
 
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="한국동물구조관린협회\n경기도 양주시 남면 감악산로 36-37 (남면) 한국동물구조관리협회\n031-867-9119(9시~18시 가능)"
+                            android:layout_margin="1dp"/>
+
                     </LinearLayout>
                 </LinearLayout>
             </LinearLayout>

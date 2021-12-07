@@ -7,9 +7,9 @@ import java.io.Serializable;
 
 public class PetItem implements Serializable {
 
-    String happenPlace, kindCd, sexCd, popfile, processState, noticeSdt, specialMark;
+    String happenPlace, kindCd, sexCd, popfile, processState, noticeSdt, specialMark, noticeNo;
 
-    public PetItem(String happenPlace, String kindCd, String sexCd, String popfile, String processState, String noticeSdt, String specialMark) {
+    public PetItem(String happenPlace, String kindCd, String sexCd, String popfile, String processState, String noticeSdt, String specialMark, String noticeNo) {
         this.happenPlace = happenPlace;
         this.kindCd = kindCd;
         this.sexCd = sexCd;
@@ -17,6 +17,7 @@ public class PetItem implements Serializable {
         this.processState = processState;
         this.noticeSdt = noticeSdt;
         this.specialMark = specialMark;
+        this.noticeNo = noticeNo;
     }
 
     public PetItem() {
@@ -62,6 +63,10 @@ public class PetItem implements Serializable {
     public  String getSpecialMark() { return specialMark; }
 
     public void setSpecialMark(String specialMark) { this.specialMark = specialMark; }
+
+    public String getNoticeNo() { return noticeNo; }
+
+    public  void setNoticeNo(String noticeNo) { this.noticeNo = noticeNo;}
 
 
 }

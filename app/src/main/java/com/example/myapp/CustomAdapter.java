@@ -23,7 +23,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.CustomView
 
     public class CustomViewHolder extends RecyclerView.ViewHolder {
 
-        private TextView kindCdtxt,sexCdtxt, popfileimg, processStatetxt, noticeSdttxt;
+        private TextView kindCdtxt,sexCdtxt, popfileimg, processStatetxt, noticeSdttxt,noticeNotxt;
         //, specialMarktxt,happenPlacetxt,;
         private ImageView popimg;
         public CustomViewHolder(View view) {
@@ -35,6 +35,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.CustomView
             this.popimg = (ImageView) view.findViewById(R.id.popimg);
             this.processStatetxt = (TextView) view.findViewById(R.id.processState);
             this.noticeSdttxt = (TextView) view.findViewById(R.id.noticeSdt);
+            this.noticeNotxt = (TextView) view.findViewById(R.id.noticeNo);
             //this.specialMarktxt = (TextView) view.findViewById(R.id.specialMark);
         }
     }
@@ -65,6 +66,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.CustomView
         viewholder.processStatetxt.setText(mList.get(position).getProcessState());
         viewholder.noticeSdttxt.setText(mList.get(position).getNoticeSdt());
         viewholder.popfileimg.setText(mList.get(position).getPopfile());
+        viewholder.noticeNotxt.setText(mList.get(position).getNoticeNo());
         //viewholder.specialMarktxt.setText(mList.get(position).getSpecialMark());
 
         Glide.with(viewholder.itemView).load(mList.get(position).getPopfile()).into(viewholder.popimg);

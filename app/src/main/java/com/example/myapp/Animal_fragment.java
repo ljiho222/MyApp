@@ -43,6 +43,8 @@ public class Animal_fragment extends Fragment implements View.OnClickListener {
     private Spinner spinnerCity, spinnerSigungu;
     private ArrayAdapter<String> arrayAdapter;
     private Button Btn_aniSearch;
+    private String queryUrl; //="http://openapi.animal.go.kr/openapi/service/rest/abandonmentPublicSrvc/abandonmentPublic?bgnde=20211001&endde=20211201&pageNo=1&numOfRows=30&ServiceKey=" + mykey ;//+ "&clCd=31" + "&numOfRows=20";
+
 
     @Nullable
     @Override
@@ -65,6 +67,7 @@ public class Animal_fragment extends Fragment implements View.OnClickListener {
 
         spinnerSigungu = (Spinner) v.findViewById(R.id.spin_sigungu);
 
+        initGetData();
         initAddressSpinner();
 
         Btn_aniSearch = (Button) v.findViewById(R.id.btn_aniSearch);
@@ -95,6 +98,28 @@ public class Animal_fragment extends Fragment implements View.OnClickListener {
         return v;
     }
 
+    private void initGetData() {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                String tempurl = "http://openapi.animal.go.kr/openapi/service/rest/abandonmentPublicSrvc/abandonmentPublic?bgnde=20211001&endde=20211201&pageNo=2&numOfRows=10&ServiceKey=" + mykey ;
+                getXmlData(tempurl);
+                getActivity().runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+
+                        if(list_pet.isEmpty() == false || list_pet.size() != 0) {
+                            Log.d("list_check", list_pet.size() + "");
+                            adapter = new CustomAdapter(getActivity().getApplicationContext(), list_pet);
+                            recyclerView.setAdapter(adapter);
+                            adapter.notifyDataSetChanged();
+                        }
+                    }
+                });
+            }
+        }).start();
+    }
+
     @Override
     public void onClick(View view) {
         if(view.getId() == R.id.pet_card){
@@ -105,7 +130,8 @@ public class Animal_fragment extends Fragment implements View.OnClickListener {
             new Thread(new Runnable() {
                 @Override
                 public void run() {
-                    getXmlData();
+                    String tempurl = "http://openapi.animal.go.kr/openapi/service/rest/abandonmentPublicSrvc/abandonmentPublic?bgnde=20211001&endde=20211201&pageNo=1&numOfRows=30&ServiceKey=" + mykey ;//+ "&clCd=31" + "&numOfRows=20";
+                    getXmlData(tempurl);
                     getActivity().runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
@@ -123,10 +149,10 @@ public class Animal_fragment extends Fragment implements View.OnClickListener {
         }
     }
 
-    private void getXmlData(){
+    private void getXmlData(String qurl){
         StringBuffer buffer=new StringBuffer();
 
-        String queryUrl="http://openapi.animal.go.kr/openapi/service/rest/abandonmentPublicSrvc/abandonmentPublic?bgnde=20210101&endde=20210730&pageNo=1&numOfRows=10&ServiceKey=" + mykey ;//+ "&clCd=31" + "&numOfRows=20";
+        String queryUrl= qurl; //"http://openapi.animal.go.kr/openapi/service/rest/abandonmentPublicSrvc/abandonmentPublic?bgnde=20211001&endde=20211201&pageNo=1&numOfRows=30&ServiceKey=" + mykey ;//+ "&clCd=31" + "&numOfRows=20";
 
         //Log.d("TAG",queryUrl);
 
@@ -187,6 +213,11 @@ public class Animal_fragment extends Fragment implements View.OnClickListener {
                         } else if(tag.equals("specialMark")){
                             xpp.next();
                             item.setSpecialMark(xpp.getText());
+                            buffer.append(xpp.getText());
+                            buffer.append("\n");
+                        } else if(tag.equals("noticeNo")){
+                            xpp.next();
+                            item.setNoticeNo(xpp.getText());
                             buffer.append(xpp.getText());
                             buffer.append("\n");
                         }
