@@ -4,7 +4,7 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/samsung/AndroidStudioProjects/MyApp/app/src/main/res/drawable/spinner_background.xml" value="0.1" />
-        <entry key="..\:/Users/samsung/AndroidStudioProjects/MyApp/app/src/main/res/layout/activity_animal_fragment.xml" value="0.16" />
+        <entry key="..\:/Users/samsung/AndroidStudioProjects/MyApp/app/src/main/res/layout/activity_animal_fragment.xml" value="0.1" />
         <entry key="..\:/Users/samsung/AndroidStudioProjects/MyApp/app/src/main/res/layout/activity_hos_fragment.xml" value="0.11367753623188406" />
         <entry key="..\:/Users/samsung/AndroidStudioProjects/MyApp/app/src/main/res/layout/activity_login.xml" value="0.12107396149949341" />
         <entry key="..\:/Users/samsung/AndroidStudioProjects/MyApp/app/src/main/res/layout/activity_main.xml" value="0.1" />
@@ -16,8 +16,9 @@
         <entry key="..\:/Users/user/AndroidStudioProjects/MyApp/app/src/main/res/drawable/border_round.xml" value="0.1" />
         <entry key="..\:/Users/user/AndroidStudioProjects/MyApp/app/src/main/res/layout/activity_findpw.xml" value="0.1" />
         <entry key="..\:/Users/user/AndroidStudioProjects/MyApp/app/src/main/res/layout/activity_login.xml" value="0.25" />
-        <entry key="..\:/Users/user/AndroidStudioProjects/MyApp/app/src/main/res/layout/activity_main.xml" value="0.33" />
+        <entry key="..\:/Users/user/AndroidStudioProjects/MyApp/app/src/main/res/layout/activity_main.xml" value="0.2612359550561798" />
         <entry key="..\:/Users/user/AndroidStudioProjects/MyApp/app/src/main/res/layout/activity_sign_up.xml" value="0.1403985507246377" />
+        <entry key="..\:/Users/user/AndroidStudioProjects/MyApp/app/src/main/res/menu/menu.xml" value="0.22" />
       </map>
     </option>
   </component>
