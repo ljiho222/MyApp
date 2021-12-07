@@ -36,7 +36,7 @@ public class Hos_fragment extends Fragment implements View.OnClickListener {
     ArrayList<HosItem> list_hos = null;
     HosItem item = null;
     //private String mykey = "40I6nK0Cvu8WLc2NOY6VwEnJ4Cc3slnxdvwfzUc2NdTOZD2gesbtgF%2FiVzqXPwAyvQ%2FzqBf%2BzuEkb6tftkL2FQ%3D%3D";
-    private String mykey = "rg0WWVl2HctjIbFCkWtKMl801PsVp/14tDW83rzRoLQ58R7SWNhglK2eScq9AeL2d3/sdGmrsNacu3Z4RPNsuA==";
+    private String mykey = "rg0WWVl2HctjIbFCkWtKMl801PsVp%2F14tDW83rzRoLQ58R7SWNhglK2eScq9AeL2d3%2FsdGmrsNacu3Z4RPNsuA%3D%3D";
 
     private Spinner spinnerCity, spinnerSigungu;
     private ArrayAdapter<String> arrayAdapter;
@@ -84,7 +84,7 @@ public class Hos_fragment extends Fragment implements View.OnClickListener {
                             @Override
                             public void run() {
                                 if (list_hos.isEmpty() == false || list_hos.size() != 0) {
-                                    Log.d("list_checkcheck", list_hos.size() + "");
+                                    //Log.d("list_checkcheck", list_hos.size() + "");
                                     adapter = new CustomAdapter2(getActivity().getApplicationContext(), list_hos);
                                     recyclerView.setAdapter(adapter);
                                     adapter.notifyDataSetChanged();
@@ -105,8 +105,8 @@ public class Hos_fragment extends Fragment implements View.OnClickListener {
     private void getXmlData() {
         StringBuffer buffer = new StringBuffer();
 
-        String queryUrl = "http://data.ulsan.go.kr/rest/ulsananimal/getUlsananimalList?ServiceKey=" + mykey + "&numOfRows=30";
-        //String queryUrl = "http://openapi.jeonju.go.kr/rest/dongmulhospitalservice/getDongMulHospital?ServiceKey=" + mykey + "&pageNo=1&numOfRows=10";
+        //String queryUrl = "http://data.ulsan.go.kr/rest/ulsananimal/getUlsananimalList?ServiceKey=" + mykey + "&numOfRows=10";
+        String queryUrl = "http://openapi.jeonju.go.kr/rest/dongmulhospitalservice/getDongMulHospital?ServiceKey=" + mykey + "&pageNo=1&numOfRows=10";
         Log.d("TAG", queryUrl);
 
         try {
@@ -138,25 +138,25 @@ public class Hos_fragment extends Fragment implements View.OnClickListener {
                             buffer.append(xpp.getText());//category 요소의 TEXT 읽어와서 문자열버퍼에 추가
                             buffer.append("\n");
                             Log.d("item_check_gugun", item.getGugun());
-                        } */else if (tag.equals("address")) {
+                        } else if (tag.equals("")) {
                             xpp.next();
                             item.setAddress(xpp.getText());
+                            Log.d("address", xpp.getText());
                             buffer.append(xpp.getText());//description 요소의 TEXT 읽어와서 문자열버퍼에 추가
                             buffer.append("\n");
-
-                        } else if (tag.equals("entId")) {
+                        } */else if (tag.equals("apiNewAddress")) {
                             xpp.next();
-                            item.setEntId(xpp.getText());
+                            item.setApiNewAddress(xpp.getText());
                             buffer.append(xpp.getText());
                             buffer.append("\n");
-                        } else if (tag.equals("title")) {
+                        } else if (tag.equals("apiDongName")) {
                             xpp.next();
-                            item.setTitle(xpp.getText());
+                            item.setApiDongName(xpp.getText());
                             buffer.append(xpp.getText());
                             buffer.append("\n");
-                        } else if (tag.equals("tel")) {
+                        } else if (tag.equals("apiLat")) {
                             xpp.next();
-                            item.setTel(xpp.getText());
+                            item.setApiTel(xpp.getText());
                             buffer.append(xpp.getText());
                             buffer.append("\n");
                         }
@@ -167,7 +167,7 @@ public class Hos_fragment extends Fragment implements View.OnClickListener {
                         tag = xpp.getName(); //테그 이름 얻어오기
 
                         if (tag.equals("list") && item != null) {
-                            Log.d("adapter_address_check", item.getTitle());
+                            Log.d("adapter_address_check", item.getApiDongName());
                             list_hos.add(item);
                         }
                         break;

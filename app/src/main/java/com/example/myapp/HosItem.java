@@ -4,15 +4,14 @@ import java.io.Serializable;
 
 public class HosItem implements Serializable {
 
-    String gugun, address, entId, title, tel;
+    String gugun, apiNewAddress, apiDongName, apiTel;
 
     //public HosItem(String gugun, String address, String entId, String title, String tel) {
     //this.gugun = gugun;
-    public HosItem(String address, String entId, String title, String tel) {
-        this.address = address;
-        this.entId = entId;
-        this.title = title;
-        this.tel = tel;
+    public HosItem(String apiNewAddress, String apiDongName, String apiTel) {
+        this.apiNewAddress = apiNewAddress;
+        this.apiDongName = apiDongName;
+        this.apiTel = apiTel;
 
     }
 
@@ -24,35 +23,27 @@ public class HosItem implements Serializable {
 
     //public void setGugun(String gugun) { this.gugun = gugun; }
 
-    public String getAddress() {
-        return address;
+    public String getApiNewAddress() {
+        return apiNewAddress;
     }
 
-    public void setAddress(String address) {
-        this.address = address;
+    public void setApiNewAddress(String apiNewAddress) {
+        this.apiNewAddress = apiNewAddress;
     }
 
-    public String getEntId() {
-        return entId;
+    public String getApiDongName() {
+        return apiDongName;
     }
 
-    public void setEntId(String entId) {
-        this.entId = entId;
+    public void setApiDongName(String apiDongName) {
+        this.apiDongName = apiDongName;
     }
 
-    public String getTitle() {
-        return title;
+    public String getApiTel() {
+        return apiTel;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public String getTel() {
-        return tel;
-    }
-
-    public void setTel(String tel) {
-        this.tel = tel;
+    public void setApiTel(String apiTel) {
+        this.apiTel = apiTel;
     }
 }

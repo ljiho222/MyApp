@@ -22,6 +22,8 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+
 import org.w3c.dom.Text;
 
 import java.io.UnsupportedEncodingException;
@@ -30,7 +32,7 @@ import java.util.List;
 
 public class Pet_Card extends AppCompatActivity implements View.OnClickListener{
     private ImageView iv_pet;
-    private TextView tv_happenPlace, tv_kindCd, tv_processState, tv_sexCd, tv_noticeSdt, tv_specialMark;
+    private TextView tv_pet, tv_happenPlace, tv_kindCd, tv_processState, tv_sexCd, tv_noticeSdt, tv_specialMark;
     private CardView view_card;
     private String tvpet, tvhappenPlace, tvkindCd, tvprocessState, tvsexCd, tvnoticeSdt, tvspecialMark;
 
@@ -70,7 +72,12 @@ public class Pet_Card extends AppCompatActivity implements View.OnClickListener{
         tv_noticeSdt.setText(tvnoticeSdt);
         tv_sexCd.setText(tvsexCd);
         tv_specialMark.setText(tvspecialMark);
-        iv_pet.setImageDrawable(Drawable.createFromPath(tvpet));
+        tv_pet.setText(tvpet);
+        //iv_pet.setImageDrawable(Drawable.createFromPath(tvpet));
+
+        //Glide.with(viewholder.itemView).load(mList.get(position).getPopfile()).into(viewholder.popimg);
+        Glide.with(this).load(tvpet).into(iv_pet);
+
     }
     @Override
     public void onBackPressed() {
@@ -87,6 +94,7 @@ public class Pet_Card extends AppCompatActivity implements View.OnClickListener{
         tv_noticeSdt = (TextView) findViewById(R.id.tv_noticeSdt);
         tv_specialMark = (TextView) findViewById(R.id.tv_specialMark);
         iv_pet = (ImageView) findViewById(R.id.iv_pet);
+        tv_pet = (TextView) findViewById(R.id.tv_pet);
         //btn_route.setOnClickListener(this);
     }
     @Override

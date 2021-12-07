@@ -18,15 +18,14 @@ public class CustomAdapter2 extends RecyclerView.Adapter<CustomAdapter2.CustomVi
 
     public class CustomViewHolder extends RecyclerView.ViewHolder {
 
-        private TextView guguntxt, addresstxt, entIdtxt, titletxt, teltxt;
+        private TextView apiNewAddresstxt, apiTeltxt, apiDongNametxt;
 
         public CustomViewHolder(View view) {
             super(view);
-            //this.guguntxt = (TextView) view.findViewById(R.id.gugun);
-            this.addresstxt = (TextView) view.findViewById(R.id.address);
-            this.entIdtxt = (TextView) view.findViewById(R.id.entId);
-            this.titletxt = (TextView) view.findViewById(R.id.title);
-            this.teltxt = (TextView) view.findViewById(R.id.tel);
+            this.apiNewAddresstxt = (TextView) view.findViewById(R.id.apiNewAddress);
+            this.apiTeltxt = (TextView) view.findViewById(R.id.apiTel);
+            this.apiDongNametxt = (TextView) view.findViewById(R.id.apiDongName);
+            //this.teltxt = (TextView) view.findViewById(R.id.tel);
         }
     }
 
@@ -51,10 +50,9 @@ public class CustomAdapter2 extends RecyclerView.Adapter<CustomAdapter2.CustomVi
     public void onBindViewHolder(@NonNull CustomViewHolder viewholder, int position) {
 
        //viewholder.guguntxt.setText(mList.get(position).getGugun());
-        viewholder.addresstxt.setText(mList.get(position).getAddress());
-        viewholder.entIdtxt.setText(mList.get(position).getEntId());
-        viewholder.titletxt.setText(mList.get(position).getTitle());
-        viewholder.teltxt.setText(mList.get(position).getTel());
+        viewholder.apiNewAddresstxt.setText(mList.get(position).getApiNewAddress());
+        viewholder.apiDongNametxt.setText(mList.get(position).getApiDongName());
+        viewholder.apiTeltxt.setText(mList.get(position).getApiTel());
 
     }
 
