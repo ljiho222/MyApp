@@ -13,6 +13,7 @@ import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -26,6 +27,7 @@ public class SignUpActivity extends AppCompatActivity {
     private TextView textMessage;
     private Button btnSignup;
 
+    private TextInputLayout input_id_layout,input_name_layout,input_pw_layout;
 
 
     // Firebase
@@ -56,13 +58,17 @@ public class SignUpActivity extends AppCompatActivity {
         btnSignup=(Button)findViewById(R.id.btnSignup);
         textMessage=(TextView)findViewById(R.id.textMessage);
 
+        input_id_layout=(TextInputLayout)findViewById(R.id.input_id_layout);
+        input_name_layout=(TextInputLayout)findViewById(R.id.input_name_layout);
+        input_pw_layout=(TextInputLayout)findViewById(R.id.input_pw_layout);
+
         // Signup
         btnSignup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String email=editId.getText().toString().trim();
-                String pw=editPw.getText().toString().trim();
-                String nickname=editNickname.getText().toString().trim();
+                String email=input_id_layout.getEditText().getText().toString().trim();
+                String pw=input_pw_layout.getEditText().getText().toString().trim();
+                String nickname=input_name_layout.getEditText().getText().toString().trim();
 
                 if(email.equals("")){
                     textMessage.setText("이메일을 입력하세요");

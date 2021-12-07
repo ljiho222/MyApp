@@ -16,6 +16,7 @@ import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -24,6 +25,8 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+
+import org.w3c.dom.Text;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -38,6 +41,7 @@ public class LoginActivity extends AppCompatActivity {
     private Button btnSignin, btnSignup, btnFind;
     private User userinfo;
 
+    private TextInputLayout input_id_layout,input_pw_layout;
     // Firebase Auth
     private FirebaseAuth mAuth;
     private FirebaseDatabase mDatabase;
@@ -89,12 +93,18 @@ public class LoginActivity extends AppCompatActivity {
         btnFind=(Button)findViewById(R.id.btnFind);
         textMessage=(TextView)findViewById(R.id.textMessage);
 
+        input_id_layout=(TextInputLayout)findViewById(R.id.input_id_layout);
+        input_pw_layout=(TextInputLayout)findViewById(R.id.input_pw_layout);
+
         // SignIn
         btnSignin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String email=editId.getText().toString().trim();
-                String pw=editPw.getText().toString().trim();
+                String email=input_id_layout.getEditText().getText().toString().trim();
+                String pw=input_pw_layout.getEditText().getText().toString().trim();
+
+                Log.e("##",email+" "+pw);
+
                 if(email.equals("")){
                     textMessage.setText("이메일을 입력하세요");
                 }

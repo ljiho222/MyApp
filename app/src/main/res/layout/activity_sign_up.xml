@@ -10,49 +10,78 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="50dp"
         android:textSize="40dp"
-        android:gravity="center"
-        android:text="회원가입"/>
+        android:text="Sign Up"/>
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="40dp"/>
 
-    <EditText
-        android:id="@+id/editId"
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/input_id_layout"
+        style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
+        app:boxBackgroundColor="@color/white"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="50dp"
-        android:layout_marginRight="50dp"
-        android:ems="10"
-        android:hint="이메일"
-        android:inputType="textPersonName"
-        android:textSize="20dp" />
+        android:layout_height="wrap_content">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/editId"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="50dp"
+            android:layout_marginRight="50dp"
+            android:ems="10"
+            android:hint="Email"
+            android:inputType="textPersonName"/>
+
+    </com.google.android.material.textfield.TextInputLayout>
+
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="5dp"/>
 
-    <EditText
-        android:id="@+id/editPw"
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/input_pw_layout"
+        style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
+        app:passwordToggleEnabled="true"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="textPassword"
-        android:layout_marginLeft="50dp"
-        android:layout_marginRight="50dp"
-        android:textSize="20dp"
-        android:hint="비밀번호" />
+        app:boxBackgroundColor="@color/white"
+        android:layout_height="wrap_content">
 
-    <EditText
-        android:id="@+id/editNickname"
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/editPw"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textPassword"
+            android:layout_marginLeft="50dp"
+            android:layout_marginRight="50dp"
+            android:hint="Password" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+    <TextView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:layout_marginLeft="50dp"
-        android:layout_marginRight="50dp"
-        android:textSize="20dp"
-        android:hint="닉네임" />
+        android:layout_height="5dp"/>
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/input_name_layout"
+        style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
+        app:boxBackgroundColor="@color/white"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/editNickname"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:layout_marginLeft="50dp"
+            android:layout_marginRight="50dp"
+            android:hint="Nickname" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
 
     <TextView
         android:layout_width="match_parent"
@@ -66,7 +95,7 @@
         android:layout_marginLeft="50dp"
         android:layout_marginRight="50dp"
         android:textSize="20dp"
-        android:text="회원가입" />
+        android:text="Sign Up" />
 
     <TextView
         android:layout_width="match_parent"

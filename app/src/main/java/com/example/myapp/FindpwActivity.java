@@ -12,6 +12,7 @@ import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class FindpwActivity extends AppCompatActivity {
@@ -22,6 +23,8 @@ public class FindpwActivity extends AppCompatActivity {
     private EditText editEmail;
     private Button btnSend;
     private TextView textMessage;
+
+    private TextInputLayout input_id_layout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,10 +44,12 @@ public class FindpwActivity extends AppCompatActivity {
         btnSend=(Button)findViewById(R.id.btnSend);
         textMessage=(TextView)findViewById(R.id.textMessage);
 
+        input_id_layout=(TextInputLayout)findViewById(R.id.input_id_layout);
+
         btnSend.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String email=editEmail.getText().toString().trim();
+                String email=input_id_layout.getEditText().getText().toString().trim();
                 if(email.equals("")){
                     textMessage.setText("이메일을 입력하세요");
                 }
