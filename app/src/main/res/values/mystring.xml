@@ -4,25 +4,47 @@
         <item>예방의학</item>
         <item></item>
         <item></item>
+        <item></item>
+        <item></item>
+        <item></item>
+        <item></item>
     </string-array>
     <string-array name="two">
-        <item>피부염</item>
+        <item>백선</item>
         <item>습진</item>
         <item>외이염</item>
+        <item>음식 알레르기</item>
+        <item>중이염</item>
+        <item>지루성 피부염</item>
+        <item>탈모증</item>
+
     </string-array>
     <string-array name="three">
-        <item>설사</item>
         <item>구토</item>
-        <item>이물섭취</item>
+        <item>당뇨</item>
+        <item>변비</item>
+        <item>설사</item>
+        <item>식중독</item>
+        <item></item>
+        <item></item>
     </string-array>
     <string-array name="four">
+        <item>각막염</item>
         <item>결막염</item>
+        <item>구내염</item>
+        <item>백내장</item>
+        <item>충치</item>
+        <item>치석</item>
         <item>치주염</item>
-        <item>치석제거</item>
+
     </string-array>
     <string-array name="five">
-        <item>골절</item>
-        <item>탈구</item>
         <item>골다공증</item>
+        <item>골절</item>
+        <item>관절염</item>
+        <item>탈구</item>
+        <item></item>
+        <item></item>
+        <item></item>
     </string-array>
 </resources>

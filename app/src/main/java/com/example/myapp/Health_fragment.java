@@ -36,10 +36,10 @@ public class Health_fragment extends Fragment {
         cat_im=(ImageView)view.findViewById(R.id.cat_im);
 
         //user 정보
-        Bundle bundle = getArguments();
-        userName = bundle.getString("userName");
-        userID= bundle.getString("userID");
-
+        if(getArguments()!=null){
+            userName = getArguments().getString("userName");
+            userID= getArguments().getString("userID");
+        }
 
         dog_im.setOnClickListener(new View.OnClickListener() {
             @Override

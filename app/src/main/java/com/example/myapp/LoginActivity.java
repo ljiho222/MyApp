@@ -42,6 +42,7 @@ public class LoginActivity extends AppCompatActivity {
     private User userinfo;
 
     private TextInputLayout input_id_layout,input_pw_layout;
+
     // Firebase Auth
     private FirebaseAuth mAuth;
     private FirebaseDatabase mDatabase;
@@ -103,7 +104,7 @@ public class LoginActivity extends AppCompatActivity {
                 String email=input_id_layout.getEditText().getText().toString().trim();
                 String pw=input_pw_layout.getEditText().getText().toString().trim();
 
-                Log.e("##",email+" "+pw);
+                //Log.e("##",email+" "+pw);
 
                 if(email.equals("")){
                     textMessage.setText("이메일을 입력하세요");

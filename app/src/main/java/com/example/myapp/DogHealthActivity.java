@@ -35,9 +35,9 @@ public class DogHealthActivity extends AppCompatActivity  {
     private RecyclerView recyclerView;
     private ScrollView scrollView;
     private TextView text1,text2,text3,text4,text5;
-    private TextView textView1, textView2, textView3;
+    private TextView textView1, textView2, textView3,textView4,textView5,textView6,textView7;
 
-    String[] array={"예방의학","",""};
+    String[] array={"예방의학","","","","","",""};
     String str="";
 
     //recyclerview
@@ -172,14 +172,28 @@ public class DogHealthActivity extends AppCompatActivity  {
         textView1=(TextView)findViewById(R.id.textView1);
         textView2=(TextView)findViewById(R.id.textView2);
         textView3=(TextView)findViewById(R.id.textView3);
+        textView4=(TextView)findViewById(R.id.textView4);
+        textView5=(TextView)findViewById(R.id.textView5);
+        textView6=(TextView)findViewById(R.id.textView6);
+        textView7=(TextView)findViewById(R.id.textView7);
+
 
         textView1.setText(array[0]);
         textView2.setText(array[1]);
         textView3.setText(array[2]);
+        textView4.setText(array[3]);
+        textView5.setText(array[4]);
+        textView6.setText(array[5]);
+        textView7.setText(array[6]);
+
 
         textView1.setOnClickListener(clickListner);
         textView2.setOnClickListener(clickListner);
         textView3.setOnClickListener(clickListner);
+        textView4.setOnClickListener(clickListner);
+        textView5.setOnClickListener(clickListner);
+        textView6.setOnClickListener(clickListner);
+        textView7.setOnClickListener(clickListner);
 
        /* for(int i=0;i<array.length;i++){
             //Log.e("##",array[i]);
@@ -209,6 +223,19 @@ public class DogHealthActivity extends AppCompatActivity  {
                 case R.id.textView3:
                     painfunc(textView3);
                     break;
+                case R.id.textView4:
+                    painfunc(textView4);
+                    break;
+                case R.id.textView5:
+                    painfunc(textView5);
+                    break;
+                case R.id.textView6:
+                    painfunc(textView6);
+                    break;
+                case R.id.textView7:
+                    painfunc(textView7);
+                    break;
+
 
             }
         }

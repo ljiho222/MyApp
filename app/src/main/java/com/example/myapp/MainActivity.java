@@ -35,6 +35,10 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+
+        bottomNavigationView = findViewById(R.id.bottomnavi);
+
+        //user 정보
         Intent intent = getIntent();
         userName = intent.getStringExtra("userName");
         userID = intent.getStringExtra("userID");
@@ -49,6 +53,7 @@ public class MainActivity extends AppCompatActivity {
         fragmentHel = new Health_fragment();
         fragmentHos = new Hos_fragment();
 
+        //user 정보
         bundle = new Bundle();
         bundle.putString("userName", userName);
         bundle.putString("userID", userID);
@@ -56,29 +61,36 @@ public class MainActivity extends AppCompatActivity {
         fragmentStack = new Stack<>();
         fragmentStack.push(fragmentMain);
 
+        //기본 fragment set
         fragmentManager = getSupportFragmentManager();
         transaction = fragmentManager.beginTransaction();
         transaction.replace(R.id.framelayout, fragmentMain).commitAllowingStateLoss();
         fragmentMain.setArguments(bundle);
-        bottomNavigationView = findViewById(R.id.bottomnavi);
 
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
                 switch (menuItem.getItemId()) {
                     case R.id.btn_main:
+                        Log.e("##",bundle.getString(userID)+"여기"+bundle.getString(userName));
+                        fragmentMain.setArguments(bundle);
                         getSupportFragmentManager().beginTransaction().replace(R.id.framelayout, new Main_fragment()).commit();
                         break;
 
                     case R.id.btn_ani:
+                        fragmentAni.setArguments(bundle);
                         getSupportFragmentManager().beginTransaction().replace(R.id.framelayout, new Animal_fragment()).commit();
+
                         break;
 
                     case R.id.btn_health:
+                        fragmentHel.setArguments(bundle);
                         getSupportFragmentManager().beginTransaction().replace(R.id.framelayout, new Health_fragment()).commit();
+
                         break;
 
                     case R.id.btn_hos:
+                        fragmentHos.setArguments(bundle);
                         getSupportFragmentManager().beginTransaction().replace(R.id.framelayout, new Hos_fragment()).commit();
                         break;
 
