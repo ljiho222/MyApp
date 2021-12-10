@@ -22,6 +22,7 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -65,7 +66,7 @@ public class WriteActivity extends AppCompatActivity {
     private RadioGroup radioGroup;
     private Button camera;
     private ImageView selectedImage;
-    private Button btn_save,btn_back;
+    private Button btn_save;
 
 
     //Database
@@ -113,16 +114,6 @@ public class WriteActivity extends AppCompatActivity {
                 makeDialog();
             }
         });
-/*
-        //back 버튼->main fragment로 이동
-        btn_back.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                transaction.replace(R.id.framelayout,fragmentMain);
-                transaction.addToBackStack(null);
-                transaction.commit();
-            }
-        });*/
 
         //저장 버튼 -> article 생성
         btn_save.setOnClickListener(new View.OnClickListener() {
@@ -154,6 +145,11 @@ public class WriteActivity extends AppCompatActivity {
     }
 
     private void initView() {
+        androidx.appcompat.widget.Toolbar toolbar=findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
+
         age=findViewById(R.id.age);
         name=findViewById(R.id.name);
         title=findViewById(R.id.title);
@@ -161,8 +157,6 @@ public class WriteActivity extends AppCompatActivity {
         radioGroup=findViewById(R.id.radioGroup);
 
         btn_save = findViewById(R.id.btn_save);
-        btn_back=findViewById(R.id.btn_back);
-
         camera = this.findViewById(R.id.camera);
         selectedImage = findViewById(R.id.selectedImage);
 
@@ -171,6 +165,15 @@ public class WriteActivity extends AppCompatActivity {
         fragmentMain= new Main_fragment();
         transaction=fragmentManager.beginTransaction();
 
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item ){
+        switch(item.getItemId()){
+            case android.R.id.home:
+                finish();
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     public static String getCurrentDate(){

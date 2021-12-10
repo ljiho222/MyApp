@@ -10,6 +10,7 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -86,7 +87,7 @@ public class CommentActivity extends AppCompatActivity {
         context = this;
 
 
-        initContent();
+        initView();
         setContent();
 
         swipeRefreshLayout.setColorSchemeResources(
@@ -105,7 +106,7 @@ public class CommentActivity extends AppCompatActivity {
         });
     }
 
-    private void initContent() {
+    private void initView() {
         //content
         textViewPetAge=(TextView)findViewById(R.id.textViewPetAge);
         textViewPetSex=(TextView)findViewById(R.id.textViewPetSex);
@@ -128,8 +129,21 @@ public class CommentActivity extends AppCompatActivity {
         linearLayoutManager=new LinearLayoutManager(this);
         recyclerViewComment.setLayoutManager(linearLayoutManager);
 
-    }
+        androidx.appcompat.widget.Toolbar toolbar=findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
 
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item ){
+        switch(item.getItemId()){
+            case android.R.id.home:
+                finish();
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
     public static String getCurrentDate(){
         dateFormat = new SimpleDateFormat("yyyyMMdd");
         Date today = Calendar.getInstance().getTime();

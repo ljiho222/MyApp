@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toolbar;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
@@ -39,7 +40,6 @@ public class MainActivity extends AppCompatActivity {
     private Health_fragment fragmentHel;
     private Hos_fragment fragmentHos;
     private BottomNavigationView bottomNavigationView;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,7 +71,6 @@ public class MainActivity extends AppCompatActivity {
 
                     case R.id.btn_ani:
                         getSupportFragmentManager().beginTransaction().replace(R.id.framelayout, new Animal_fragment()).commit();
-
                         break;
 
                     case R.id.btn_health:
@@ -92,6 +91,9 @@ public class MainActivity extends AppCompatActivity {
 
     private void initView() {
         bottomNavigationView = findViewById(R.id.bottomnavi);
+        androidx.appcompat.widget.Toolbar toolbar=findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
 
         context = this;
         fragmentMain = new Main_fragment();
@@ -100,10 +102,5 @@ public class MainActivity extends AppCompatActivity {
         fragmentHos = new Hos_fragment();
     }
 
-   /* private void initFirebase() {
-        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();//로그인한 user 정보
-        String uid = user.getUid();//user 고유 id
-        mAuth = FirebaseAuth.getInstance(); //user 계정 정보
 
-    }*/
 }
