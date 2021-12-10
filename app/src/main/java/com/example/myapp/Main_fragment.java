@@ -18,30 +18,34 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ShareActionProvider;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.util.ArrayList;
 import java.util.Collections;
 
 public class Main_fragment extends Fragment {
 
+    //userInfo
     String userName,userID;
 
     //firebase
     private FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
-    private DatabaseReference databaseReference = firebaseDatabase.getReference();
-    private User user;
-
+    private DatabaseReference databaseReference = firebaseDatabase.getReference();//realtime database에서 정보
+    private FirebaseUser firebaseUser;
+    private FirebaseAuth firebaseAuth;
 
     //view
     private RecyclerView recyclerView;
     private SwipeRefreshLayout swipeRefreshLayout;
     private Button btn_add;
-
 
     //recyclerview
     private LinearLayoutManager linearLayoutManager;
@@ -55,10 +59,12 @@ public class Main_fragment extends Fragment {
                              @Nullable Bundle savedInstanceState){
         View view= inflater.inflate(R.layout.activity_main_fragment,container,false);
 
-
         btn_add=(Button)view.findViewById(R.id.btn_add);
         recyclerView=(RecyclerView)view.findViewById(R.id.recyclerView);
         swipeRefreshLayout=(SwipeRefreshLayout)view.findViewById(R.id.swipeRefreshLayout);
+
+
+        initFirebase();
 
         //swipelayout
         swipeRefreshLayout.setColorSchemeResources(
@@ -76,35 +82,48 @@ public class Main_fragment extends Fragment {
         });
 
         //set recyclerview to adapter
-        articlefunc();
+        initArticle();
 
-
-        //user 정보
-        Bundle bundle = getArguments();
-        userName = bundle.getString("userName");
-        userID= bundle.getString("userID");
 
         //article 추가시 화면 전환
-        if(bundle!=null){
-            Log.e("###", String.valueOf(bundle));
-            btn_add.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Intent intent = new Intent(getActivity(),WriteActivity.class);
-                    intent.putExtra("userName", userName);
-                    intent.putExtra("userID",userID);
-                    startActivity(intent);
-                }
-            });
-        }
-
-
+        btn_add.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(),WriteActivity.class);
+                intent.putExtra("userName", userName);
+                intent.putExtra("userID",userID);
+                startActivity(intent);
+            }
+        });
 
 
         return view;
     }
 
-    private void articlefunc() {
+    private void initFirebase() {
+        firebaseUser = FirebaseAuth.getInstance().getCurrentUser();//로그인한 user 정보
+        userID = firebaseUser.getUid();//user 고유 id
+        firebaseAuth = FirebaseAuth.getInstance(); //user 계정 정보
+
+        databaseReference.child("Users").child(userID).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
+                User user = snapshot.getValue(User.class);
+
+                userName =user.getUserName();
+                //Log.e("main2",userName+" "+uid+"--"+userID);
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull @NotNull DatabaseError error) {
+
+            }
+        });
+    }
+
+
+    private void initArticle() {
         arrayList=new ArrayList<>();
         articleAdapter=new ArticleAdapter(arrayList,userID);
 
@@ -120,7 +139,6 @@ public class Main_fragment extends Fragment {
                     arrayList.add(article);
 
                 }
-                //Log.e("###", String.valueOf(arrayList.size()));
                 Collections.reverse(arrayList);
                 articleAdapter.notifyDataSetChanged();
 

@@ -98,22 +98,7 @@ public class WriteActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_write);
 
-        age=findViewById(R.id.age);
-        name=findViewById(R.id.name);
-        title=findViewById(R.id.title);
-        contents = findViewById(R.id.contents);
-        radioGroup=findViewById(R.id.radioGroup);
-
-        btn_save = findViewById(R.id.btn_save);
-        btn_back=findViewById(R.id.btn_back);
-
-        camera = this.findViewById(R.id.camera);
-        selectedImage = findViewById(R.id.selectedImage);
-
-        //activity to fragment
-        fragmentManager = getSupportFragmentManager();
-        fragmentMain= new Main_fragment();
-        transaction=fragmentManager.beginTransaction();
+        initView();
 
         //for user info
         Intent intent = getIntent();
@@ -155,7 +140,7 @@ public class WriteActivity extends AppCompatActivity {
                 int id = radioGroup.getCheckedRadioButtonId();
                 RadioButton rb =(RadioButton)findViewById(id);
 
-                Log.e("##",getCurrentDate());
+                //Log.e("##",getCurrentDate());
                 article = new Article(Long.toString(now1), userID, userName, contents.getText().toString(), age.getText().toString(),
                         title.getText().toString(), name.getText().toString(),rb.getText().toString(), "", getCurrentDate());
                 if(file!=null){
@@ -166,6 +151,26 @@ public class WriteActivity extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    private void initView() {
+        age=findViewById(R.id.age);
+        name=findViewById(R.id.name);
+        title=findViewById(R.id.title);
+        contents = findViewById(R.id.contents);
+        radioGroup=findViewById(R.id.radioGroup);
+
+        btn_save = findViewById(R.id.btn_save);
+        btn_back=findViewById(R.id.btn_back);
+
+        camera = this.findViewById(R.id.camera);
+        selectedImage = findViewById(R.id.selectedImage);
+
+        //activity to fragment
+        fragmentManager = getSupportFragmentManager();
+        fragmentMain= new Main_fragment();
+        transaction=fragmentManager.beginTransaction();
+
     }
 
     public static String getCurrentDate(){
@@ -185,7 +190,7 @@ public class WriteActivity extends AppCompatActivity {
     }
 
     public void upload(Uri file, final Long now1){
-        Log.v("##", "upload()");
+        //Log.v("##", "upload()");
         pdialog=new ProgressDialog(WriteActivity.this);
         pdialog.setTitle("업로드 중입니다");
         pdialog.show();
@@ -196,7 +201,7 @@ public class WriteActivity extends AppCompatActivity {
             public void onFailure(@NonNull Exception exception) {
                 // Handle unsuccessful uploads
                 Toast.makeText(WriteActivity.this, "실패", Toast.LENGTH_SHORT).show();
-                Log.v("123123", "fail");
+                //Log.v("123123", "fail");
             }
         }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
             @Override

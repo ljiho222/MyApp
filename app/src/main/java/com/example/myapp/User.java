@@ -7,11 +7,11 @@ public class User implements Serializable {
     public String uid;
 
     public User(){
-        userName="";
-        this.uid =new String();
+        this.userName="";
+        this.uid ="";
     }
 
-    public User(String userName,String  uid)
+    public User(String userName,String uid)
     {
         this.userName = userName;
         this.uid = uid;

@@ -36,7 +36,6 @@ import java.util.HashMap;
 public class LoginActivity extends AppCompatActivity {
 
     // widgets
-    private EditText editId, editPw;
     private TextView textMessage;
     private Button btnSignin, btnSignup, btnFind;
     private User userinfo;
@@ -81,14 +80,13 @@ public class LoginActivity extends AppCompatActivity {
             mAuth.signOut();
         }
         else if (loginId != null && loginPw != null) {
-            // loginAccount(loginId, loginPw);
+            loginAccount(loginId, loginPw);
         }
     }
 
     public void initView(){
         // Initialize widget
-        editId=(EditText)findViewById(R.id.editId);
-        editPw=(EditText)findViewById(R.id.editPw);
+
         btnSignin=(Button)findViewById(R.id.btnSignin);
         btnSignup=(Button)findViewById(R.id.btnSignup);
         btnFind=(Button)findViewById(R.id.btnFind);
@@ -176,9 +174,8 @@ public class LoginActivity extends AppCompatActivity {
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                         User userInfo = dataSnapshot.getValue(User.class);
                         Intent intent = new Intent(LoginActivity.this,MainActivity.class);
-                        Log.e("###",user.getUid()+"--"+userInfo.getUserName());
+                        //Log.e("login",user.getUid());
 
-                        Log.e("###",userInfo.getUid()+"--"+userInfo.getUserName());
                         intent.putExtra("userID", user.getUid());
                         intent.putExtra("userName", userInfo.getUserName());
 
