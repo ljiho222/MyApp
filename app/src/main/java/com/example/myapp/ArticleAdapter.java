@@ -55,10 +55,9 @@ public class ArticleAdapter extends RecyclerView.Adapter<ArticleAdapter.CustomVi
 
 
         //login된 user
-
         userName=((MainActivity)MainActivity.context).userName;
 
-        Log.e("######",userName);
+        //Log.e("######",userName);
 
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_list_article, parent, false);
         CustomViewHolder holder = new CustomViewHolder(view);
@@ -74,7 +73,7 @@ public class ArticleAdapter extends RecyclerView.Adapter<ArticleAdapter.CustomVi
         //유저 닉네임, 게시글 내용
         holder.textViewUserName.setText(article.getUserName());
         holder.textViewContent.setText(article.getContent());
-        holder.textViewName.setText(article.getName());
+        //holder.textViewName.setText(article.getName());
         holder.textViewTitle.setText(article.getTitle());
 
 
@@ -103,8 +102,8 @@ public class ArticleAdapter extends RecyclerView.Adapter<ArticleAdapter.CustomVi
         int deviceWidth = displayMetrics.widthPixels;
         deviceWidth = deviceWidth - 50;
         int deviceHeight = (int) (deviceWidth * 0.5);
-        holder.mView.getLayoutParams().width=deviceWidth;
-        holder.mView.getLayoutParams().height=deviceHeight;
+        //holder.mView.getLayoutParams().width=deviceWidth;
+        //holder.mView.getLayoutParams().height=deviceHeight;
     }
 
 
@@ -213,7 +212,7 @@ public class ArticleAdapter extends RecyclerView.Adapter<ArticleAdapter.CustomVi
 
             this.textViewUserName = (TextView)itemView.findViewById(R.id.textViewUserName);
             this.textViewContent = (TextView)itemView.findViewById(R.id.textViewContent);
-            this.textViewName=(TextView)itemView.findViewById(R.id.textViewName);
+            //this.textViewName=(TextView)itemView.findViewById(R.id.textViewName);
             this.textViewTitle=(TextView)itemView.findViewById(R.id.textViewTitle);
             this.textViewEndDate = (TextView)itemView.findViewById(R.id.textViewEndDate);
             this.buttonDelete = itemView.findViewById(R.id.buttonDelete);

@@ -41,6 +41,7 @@ public class CommentActivity extends AppCompatActivity {
     //게시글 user, article
     String userName,articleID;
     String imgUrl="";
+    Integer tempNum=0;
 
     //user
     String userInfo="";
@@ -52,7 +53,7 @@ public class CommentActivity extends AppCompatActivity {
 
     //article
     private TextView textViewPetAge,textViewPetSex,textViewPetName;
-    private TextView textViewContent,textViewTitle;
+    private TextView textViewContent,textViewTitle,textViewCommentNum;
     private TextView textViewUser,textViewDate;
     private ImageView imageView;
 
@@ -122,6 +123,7 @@ public class CommentActivity extends AppCompatActivity {
         //comment
         recyclerViewComment = (RecyclerView)findViewById(R.id.recyclerViewComment);
         editTextWriteComment=(EditText)findViewById(R.id.editTextWriteComment);
+        textViewCommentNum=(TextView)findViewById(R.id.textViewCommentNum);
 
 
         //layout
@@ -166,15 +168,17 @@ public class CommentActivity extends AppCompatActivity {
                 Article article = snapshot.getValue(Article.class);
 
                 //pet info
-                textViewPetAge.setText(article.getAge());
-                textViewPetSex.setText(article.getSex());
-                textViewPetName.setText(article.getName());
+                textViewPetName.setText(article.getName()+"/");
+                textViewPetSex.setText(article.getSex()+"/");
+                textViewPetAge.setText(article.getAge()+"살");
 
                 textViewContent.setText(article.getContent());
                 textViewTitle.setText(article.getTitle());
 
                 textViewUser.setText(article.getUserName());
-                textViewDate.setText(article.getEndDate());
+
+                String tempDate=article.getEndDate();
+                textViewDate.setText(tempDate.substring(0,4)+"년 "+tempDate.substring(4,6)+"월 "+tempDate.substring(6,8)+"일");
 
                 imgUrl=article.getImage();
                //Log.e("##","imgUrl: "+ imgUrl);
@@ -194,15 +198,20 @@ public class CommentActivity extends AppCompatActivity {
     }
 
     private void viewComments(){
+        tempNum=0;
         databaseReference.child("Articles").child(articleID).child("Comments").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull @NotNull DataSnapshot dataSnapshot) {
                 for(DataSnapshot snapshot : dataSnapshot.getChildren()){
                     Comment comment = snapshot.getValue(Comment.class);
                     arrayList.add(comment);
+                    tempNum++;
                 }
                 commentAdapter.notifyDataSetChanged();
                 progressDialog.dismiss();
+                //Log.e("##", String.valueOf(tempNum));
+                textViewCommentNum.setText(String.valueOf(tempNum));
+
             }
 
             @Override
@@ -226,6 +235,7 @@ public class CommentActivity extends AppCompatActivity {
         Comment comment = new Comment(Long.toString(now),userInfo,textComment,getCurrentDate());
         databaseReference.child("Articles").child(articleID).child("Comments").child(Long.toString(now)).setValue(comment);
         ToastText("작성 완료되었습니다.");
+
         setContent();
     }
 

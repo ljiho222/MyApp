@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
@@ -34,7 +35,7 @@ public class CatHealthActivity extends AppCompatActivity {
     private TextView text1,text2,text3,text4,text5;
     private TextView textView1, textView2, textView3;
 
-    String[] array={"예방의학","",""};
+    String[] array={"예방의학","","","","","",""};
     String str="";
 
     //recyclerview
@@ -47,14 +48,7 @@ public class CatHealthActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cat_health);
 
-        recyclerView=(RecyclerView)findViewById(R.id.recyclerView);
-        linearLayout=(LinearLayout)findViewById(R.id.linearLayout);
-        text1=(TextView)findViewById(R.id.text1);
-        text2=(TextView)findViewById(R.id.text2);
-        text3=(TextView)findViewById(R.id.text3);
-        text4=(TextView)findViewById(R.id.text4);
-        text5=(TextView)findViewById(R.id.text5);
-
+        initView();
 
         text1.setOnClickListener(listener);
         text2.setOnClickListener(listener);
@@ -73,6 +67,29 @@ public class CatHealthActivity extends AppCompatActivity {
 
     }
 
+    private void initView() {
+        recyclerView=(RecyclerView)findViewById(R.id.recyclerView);
+        linearLayout=(LinearLayout)findViewById(R.id.linearLayout);
+        text1=(TextView)findViewById(R.id.text1);
+        text2=(TextView)findViewById(R.id.text2);
+        text3=(TextView)findViewById(R.id.text3);
+        text4=(TextView)findViewById(R.id.text4);
+        text5=(TextView)findViewById(R.id.text5);
+
+        androidx.appcompat.widget.Toolbar toolbar=findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item ){
+        switch(item.getItemId()){
+            case android.R.id.home:
+                finish();
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
     private void painfunc(TextView txt) {
 
         Log.e("##","str="+str+"name"+txt.getText().toString());
@@ -163,8 +180,6 @@ public class CatHealthActivity extends AppCompatActivity {
     };
 
     private void textSet() {
-        //Log.e("#", String.valueOf(array.length));
-
 
         textView1=(TextView)findViewById(R.id.textView1);
         textView2=(TextView)findViewById(R.id.textView2);

@@ -45,6 +45,8 @@ public class CommentAdapter extends RecyclerView.Adapter<CommentAdapter.CustomVi
         userName=((MainActivity)MainActivity.context).userName;
         articleID = ((CommentActivity)CommentActivity.context).articleID;
 
+        //Log.e("##", String.valueOf(arrayList.size()));
+
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_list_comment, parent, false);
         CommentAdapter.CustomViewHolder holder = new CommentAdapter.CustomViewHolder(view);
         return holder;
@@ -57,7 +59,7 @@ public class CommentAdapter extends RecyclerView.Adapter<CommentAdapter.CustomVi
 
         //유저 닉네임, 댓글 내용
         if(arrayList.get(position).getUserName().equals(userName)) {
-            holder.textViewUserName.setText(comment.getUserName() + "(작성자)");
+            holder.textViewUserName.setText(comment.getUserName() + " (나)");
         }
 
         else holder.textViewUserName.setText(comment.getUserName());
@@ -108,7 +110,7 @@ public class CommentAdapter extends RecyclerView.Adapter<CommentAdapter.CustomVi
     //날짜
     private void addDate(@NonNull CommentAdapter.CustomViewHolder holder, final Comment comment) {
         String date = comment.getEndDate();
-        holder.textViewEndDate.setText(date.substring(0,4)+"년 "+date.substring(4,6) + "월 " + date.substring(6,8) +"일 ");
+        //holder.textViewEndDate.setText(date.substring(0,4)+"년 "+date.substring(4,6) + "월 " + date.substring(6,8) +"일 ");
     }
 
 
@@ -131,7 +133,7 @@ public class CommentAdapter extends RecyclerView.Adapter<CommentAdapter.CustomVi
 
             this.textViewUserName = (TextView)itemView.findViewById(R.id.textViewUserName);
             this.textViewContent = (TextView)itemView.findViewById(R.id.textViewContent);
-            this.textViewEndDate = (TextView)itemView.findViewById(R.id.textViewEndDate);
+            //this.textViewEndDate = (TextView)itemView.findViewById(R.id.textViewEndDate);
 
             this.buttonUser = (Button)itemView.findViewById(R.id.buttonUser);
             this.buttonDelete = (Button)itemView.findViewById(R.id.buttonDelete);
