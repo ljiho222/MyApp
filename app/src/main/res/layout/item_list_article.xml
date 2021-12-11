@@ -71,7 +71,7 @@
             android:scaleType="fitXY"
             android:adjustViewBounds="true"
             android:layout_gravity="center"
-            android:src="@mipmap/ic_launcher"/>
+            android:src="@drawable/common_google_signin_btn_icon_light"/>
         <TextView
             android:id="@+id/textViewTitle"
             android:layout_width="match_parent"

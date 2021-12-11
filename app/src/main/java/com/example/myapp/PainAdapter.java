@@ -1,7 +1,9 @@
 package com.example.myapp;
 
 import android.app.Activity;
+import android.net.Uri;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,19 +17,21 @@ import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
 import org.w3c.dom.Text;
 
+import java.io.File;
 import java.util.ArrayList;
 
 public class PainAdapter extends RecyclerView.Adapter<PainAdapter.CustomViewHolder> implements Filterable {
     private ArrayList<Pain> arrayList;
     private ArrayList<Pain> unfilteredList;
 
-    private FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
-    private DatabaseReference databaseReference = firebaseDatabase.getReference();
 
     public PainAdapter(ArrayList<Pain> arrayList) {
         this.arrayList = arrayList;
@@ -36,13 +40,14 @@ public class PainAdapter extends RecyclerView.Adapter<PainAdapter.CustomViewHold
     }
     public class CustomViewHolder extends RecyclerView.ViewHolder {
 
-        protected TextView textViewContent;
+        protected TextView textViewContent,textViewPainName;
         protected ImageView imageView;
         protected CardView mView;
 
         public CustomViewHolder(View itemView) {
             super(itemView);
 
+            this.textViewPainName=(TextView)itemView.findViewById(R.id.textViewPainName);
             this.textViewContent=(TextView)itemView.findViewById(R.id.textViewContent);
             this.imageView=(ImageView)itemView.findViewById(R.id.imageView);
             this.mView=(CardView)itemView.findViewById(R.id.mArticleView);
@@ -67,23 +72,20 @@ public class PainAdapter extends RecyclerView.Adapter<PainAdapter.CustomViewHold
 
         Pain pain = arrayList.get(position);
 
+        //이름,내용
+        holder.textViewPainName.setText(pain.getName());
         holder.textViewContent.setText(pain.getContent());
 
-        if(!pain.getImage().equals("")){
-            holder.imageView.setVisibility(View.VISIBLE);
-            Glide.with(holder.itemView.getContext()).load(pain.getImage()).into(holder.imageView);
-        }
-        else{
-            holder.imageView.setVisibility(View.GONE);
-        }
 
-        DisplayMetrics displayMetrics = new DisplayMetrics();
-        ((Activity) holder.itemView.getContext()).getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
-        int deviceWidth = displayMetrics.widthPixels;
-        deviceWidth = deviceWidth - 50;
-        int deviceHeight = (int) (deviceWidth * 0.5);
-        holder.mView.getLayoutParams().width=deviceWidth;
-        holder.mView.getLayoutParams().height=deviceHeight;
+        //사진
+        StorageReference storageReference =((DogHealthActivity)DogHealthActivity.context).storageReference;
+        storageReference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+            @Override
+            public void onSuccess(Uri uri) {
+                Glide.with(holder.itemView.getContext()).load(uri.toString()).into(holder.imageView);
+            }
+        });
+
     }
 
     @Override

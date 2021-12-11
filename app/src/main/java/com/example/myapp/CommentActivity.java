@@ -162,6 +162,7 @@ public class CommentActivity extends AppCompatActivity {
         commentAdapter = new CommentAdapter(arrayList);
         recyclerViewComment.setAdapter(commentAdapter);
 
+        //선택한 게시글 하나 보여주기
         databaseReference.child("Articles").child(articleID).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -197,6 +198,7 @@ public class CommentActivity extends AppCompatActivity {
         });
     }
 
+    //댓글
     private void viewComments(){
         tempNum=0;
         databaseReference.child("Articles").child(articleID).child("Comments").addListenerForSingleValueEvent(new ValueEventListener() {

@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
@@ -20,6 +21,8 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
 import org.w3c.dom.Text;
 
@@ -27,9 +30,13 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 public class DogHealthActivity extends AppCompatActivity  {
+    public static Object context;
+
     //firebase
-    private FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
-    private DatabaseReference databaseReference = firebaseDatabase.getReference();
+    private FirebaseDatabase firebaseDatabase;
+    private DatabaseReference databaseReference;
+    private FirebaseStorage firebaseStorage;
+    public StorageReference storageReference;
 
     //view
     private LinearLayout linearLayout;
@@ -51,9 +58,8 @@ public class DogHealthActivity extends AppCompatActivity  {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dog_health);
 
+        initFirebase();
         initView();
-
-
 
         text1.setOnClickListener(listener);
         text2.setOnClickListener(listener);
@@ -68,11 +74,19 @@ public class DogHealthActivity extends AppCompatActivity  {
         textSet();
 
         //set recyclerview to adapter
-        painfunc(textView1);
+        initFunc(textView1);
 
     }
 
+    private void initFirebase() {
+        firebaseDatabase = FirebaseDatabase.getInstance();
+        databaseReference = firebaseDatabase.getReference();
+        firebaseStorage=FirebaseStorage.getInstance("gs://myapp-85dd6.appspot.com");
+    }
+
     private void initView() {
+        context = this;
+
         recyclerView=(RecyclerView)findViewById(R.id.recyclerView);
         linearLayout=(LinearLayout)findViewById(R.id.linearLayout);
         text1=(TextView)findViewById(R.id.text1);
@@ -95,9 +109,7 @@ public class DogHealthActivity extends AppCompatActivity  {
         }
         return super.onOptionsItemSelected(item);
     }
-    private void painfunc(TextView txt) {
-
-       // Log.e("##","str="+str+"name"+txt.getText().toString());
+    private void initFunc(TextView txt) {
 
         arrayList=new ArrayList<>();
         painAdapter=new PainAdapter(arrayList);
@@ -112,15 +124,16 @@ public class DogHealthActivity extends AppCompatActivity  {
                 for(DataSnapshot snapshot: dataSnapshot.getChildren()){
                     Pain pain= snapshot.getValue(Pain.class);
 
-                    arrayList.add(pain);
+                    String tempId=pain.getId();
+                    storageReference=firebaseStorage.getReference().child("health/dog/"+str+"/"+tempId+".JPG");
+                    //Log.e("##", String.valueOf(storageReference));
 
+                    arrayList.add(pain);
                 }
-                //Log.e("###", String.valueOf(arrayList.size()));
-                Collections.reverse(arrayList);
+                //Collections.reverse(arrayList);
                 painAdapter.notifyDataSetChanged();
 
             }
-
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
                 Log.e("##","error");
@@ -185,8 +198,6 @@ public class DogHealthActivity extends AppCompatActivity  {
     };
 
     private void textSet() {
-        //Log.e("#", String.valueOf(array.length));
-
 
         textView1=(TextView)findViewById(R.id.textView1);
         textView2=(TextView)findViewById(R.id.textView2);
@@ -206,53 +217,39 @@ public class DogHealthActivity extends AppCompatActivity  {
         textView7.setText(array[6]);
 
 
-        textView1.setOnClickListener(clickListner);
-        textView2.setOnClickListener(clickListner);
-        textView3.setOnClickListener(clickListner);
-        textView4.setOnClickListener(clickListner);
-        textView5.setOnClickListener(clickListner);
-        textView6.setOnClickListener(clickListner);
-        textView7.setOnClickListener(clickListner);
-
-       /* for(int i=0;i<array.length;i++){
-            //Log.e("##",array[i]);
-            TextView txt = new TextView(getApplicationContext());
-            LinearLayout.LayoutParams p = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-            txt.setLayoutParams(p);
-            txt.setText(array[i]);
-            txt.setTag(i);
-            linearLayout.addView(txt);
-
-            //txt.setOnClickListener(onClickListener);
-
-        }*/
-
+        textView1.setOnClickListener(clickListener);
+        textView2.setOnClickListener(clickListener);
+        textView3.setOnClickListener(clickListener);
+        textView4.setOnClickListener(clickListener);
+        textView5.setOnClickListener(clickListener);
+        textView6.setOnClickListener(clickListener);
+        textView7.setOnClickListener(clickListener);
 
     }
-    View.OnClickListener clickListner = new View.OnClickListener() {
+    View.OnClickListener clickListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
             switch (v.getId()){
                 case R.id.textView1:
-                    painfunc(textView1);
+                    initFunc(textView1);
                     break;
                 case R.id.textView2:
-                    painfunc(textView2);
+                    initFunc(textView2);
                     break;
                 case R.id.textView3:
-                    painfunc(textView3);
+                    initFunc(textView3);
                     break;
                 case R.id.textView4:
-                    painfunc(textView4);
+                    initFunc(textView4);
                     break;
                 case R.id.textView5:
-                    painfunc(textView5);
+                    initFunc(textView5);
                     break;
                 case R.id.textView6:
-                    painfunc(textView6);
+                    initFunc(textView6);
                     break;
                 case R.id.textView7:
-                    painfunc(textView7);
+                    initFunc(textView7);
                     break;
 
 

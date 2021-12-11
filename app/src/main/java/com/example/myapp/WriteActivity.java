@@ -35,6 +35,7 @@ import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.google.android.gms.tasks.Continuation;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -360,15 +361,19 @@ public class WriteActivity extends AppCompatActivity {
                     // file=Uri.fromFile(new File(getPath(uri)));
                     try{
                         Bitmap bitmap=MediaStore.Images.Media.getBitmap(getContentResolver(),file);
-                        selectedImage.setImageBitmap(bitmap);
-                        selectedImage.setVisibility(View.VISIBLE);
+
+
+                        //selectedImage.setImageBitmap(bitmap);
+                        //selectedImage.setVisibility(View.VISIBLE);
+
+                        Glide.with(this).load(file).into(selectedImage);
                     } catch (FileNotFoundException e) {
                         e.printStackTrace();
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
                     articleRef=storageRef.child("articles/"+file.getLastPathSegment());
-                    Log.e("Error",articleRef.toString());
+                    //Log.e("Error",articleRef.toString());
                 }
                 break;
             }

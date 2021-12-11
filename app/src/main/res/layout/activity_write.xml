@@ -19,43 +19,42 @@
             android:textSize="20dp"
             android:textStyle="bold"
             android:layout_gravity="center"/>
+
     </androidx.appcompat.widget.Toolbar>
-
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="10dp"
-        android:orientation="horizontal">
-
+        android:layout_height="wrap_content">
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:layout_gravity="center"
             android:gravity="center"
+            android:layout_margin="5dp"
             android:text="게시글 작성"
+            android:textStyle="bold"
             android:textSize="20dp" />
-
-        <Button
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_save"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="게시" />
-
-    </LinearLayout>
+            android:background="#00ff0000"
+            android:gravity="right"
+            android:text="게시"
+            android:layout_margin="5dp"/>
+    </RelativeLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="10dp">
+        android:padding="5dp">
 
         <EditText
             android:id="@+id/title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_vertical"
-            android:textSize="20dp"
+            android:textCursorDrawable="@color/beige"
+            android:textColorHighlight="@color/beige"
             android:hint="제목"/>
 
         <LinearLayout
@@ -65,10 +64,11 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="이름"
-                android:textSize="20dp"/>
+                android:text="이름"/>
             <EditText
                 android:id="@+id/name"
+                android:textCursorDrawable="@color/beige"
+                android:textColorHighlight="@color/beige"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
         </LinearLayout>
@@ -84,13 +84,13 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="나이"
-                    android:textSize="20dp"/>
+                    android:text="나이"/>
                 <EditText
                     android:id="@+id/age"
                     android:layout_weight="1"
                     android:hint="(살)"
-                    android:gravity="right"
+                    android:textCursorDrawable="@color/beige"
+                    android:textColorHighlight="@color/beige"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
             </LinearLayout>
@@ -105,8 +105,7 @@
                     android:gravity="center"
                     android:layout_gravity="center"
                     android:layout_weight="1"
-                    android:text="성별"
-                    android:textSize="20dp"/>
+                    android:text="성별"/>
                 <RadioGroup
                     android:id="@+id/radioGroup"
                     android:layout_width="wrap_content"
@@ -118,15 +117,15 @@
                         android:id="@+id/radioF"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textSize="20dp"
                         android:layout_weight="1"
+                        android:textCursorDrawable="@color/beige"
                         android:text="F"/>
                     <RadioButton
                         android:id="@+id/radioM"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textSize="20dp"
                         android:layout_weight="1"
+                        android:textColorHighlight="@color/beige"
                         android:text="M"/>
                 </RadioGroup>
             </LinearLayout>
@@ -144,17 +143,19 @@
             android:gravity="top"
             android:hint="내용을 입력하세요"
             android:textColor="@color/black"
+            android:textCursorDrawable="@color/beige"
+            android:textColorHighlight="@color/beige"
             android:inputType="textMultiLine"
             android:scrollbars="vertical"
             android:padding="10dp"
-            android:background="@drawable/border"
-            android:textSize="17dp" />
+            android:background="@drawable/border" />
     </LinearLayout>
 
     <Button
         android:id="@+id/camera"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_margin="10dp"
         android:text="사진을 추가하세요"/>
     <LinearLayout
         android:layout_width="match_parent"

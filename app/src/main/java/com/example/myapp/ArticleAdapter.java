@@ -97,13 +97,13 @@ public class ArticleAdapter extends RecyclerView.Adapter<ArticleAdapter.CustomVi
         //뷰클릭
         clickItem(holder,article);
 
-        DisplayMetrics displayMetrics = new DisplayMetrics();
+        /*DisplayMetrics displayMetrics = new DisplayMetrics();
         ((Activity) holder.itemView.getContext()).getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
         int deviceWidth = displayMetrics.widthPixels;
         deviceWidth = deviceWidth - 50;
         int deviceHeight = (int) (deviceWidth * 0.5);
         //holder.mView.getLayoutParams().width=deviceWidth;
-        //holder.mView.getLayoutParams().height=deviceHeight;
+        //holder.mView.getLayoutParams().height=deviceHeight;*/
     }
 
 
