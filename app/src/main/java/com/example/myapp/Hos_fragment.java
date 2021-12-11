@@ -132,19 +132,7 @@ public class Hos_fragment extends Fragment implements View.OnClickListener {
                         if (tag.equals("list")) {
                             Log.d("TAG_list", tag);
                             item = new HosItem();
-                        } /*else if (tag.equals("gugun")) {
-                            xpp.next();
-                            item.setGugun(xpp.getText());
-                            buffer.append(xpp.getText());//category 요소의 TEXT 읽어와서 문자열버퍼에 추가
-                            buffer.append("\n");
-                            Log.d("item_check_gugun", item.getGugun());
-                        } else if (tag.equals("")) {
-                            xpp.next();
-                            item.setAddress(xpp.getText());
-                            Log.d("address", xpp.getText());
-                            buffer.append(xpp.getText());//description 요소의 TEXT 읽어와서 문자열버퍼에 추가
-                            buffer.append("\n");
-                        } */else if (tag.equals("apiNewAddress")) {
+                        } else if (tag.equals("apiNewAddress")) {
                             xpp.next();
                             item.setApiNewAddress(xpp.getText());
                             buffer.append(xpp.getText());
@@ -167,7 +155,6 @@ public class Hos_fragment extends Fragment implements View.OnClickListener {
                         tag = xpp.getName(); //테그 이름 얻어오기
 
                         if (tag.equals("list") && item != null) {
-                            Log.d("adapter_address_check", item.getApiDongName());
                             list_hos.add(item);
                         }
                         break;
@@ -251,101 +238,6 @@ public class Hos_fragment extends Fragment implements View.OnClickListener {
             }
         });
 
-        spinnerSigungu.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                // 서울특별시 선택시
-                if (spinnerCity.getSelectedItemPosition() == 1 && spinnerSigungu.getSelectedItemPosition() > -1) {
-                    switch (position) {
-                        //25
-                        case 0:
-                            setDongSpinnerAdapterItem(R.array.spinner_region_seoul_gangnam);
-                            break;
-                        case 1:
-                            setDongSpinnerAdapterItem(R.array.spinner_region_seoul_gangdong);
-                            break;
-                        case 2:
-                            setDongSpinnerAdapterItem(R.array.spinner_region_seoul_gangbuk);
-                            break;
-                        case 3:
-                            setDongSpinnerAdapterItem(R.array.spinner_region_seoul_gangseo);
-                            break;
-                        case 4:
-                            setDongSpinnerAdapterItem(R.array.spinner_region_seoul_gwanak);
-                            break;
-                        case 5:
-                            setDongSpinnerAdapterItem(R.array.spinner_region_seoul_gwangjin);
-                            break;
-                        case 6:
-                            setDongSpinnerAdapterItem(R.array.spinner_region_seoul_guro);
-                            break;
-                        case 7:
-                            setDongSpinnerAdapterItem(R.array.spinner_region_seoul_geumcheon);
-                            break;
-                        case 8:
-                            setDongSpinnerAdapterItem(R.array.spinner_region_seoul_nowon);
-                            break;
-                        case 9:
-                            setDongSpinnerAdapterItem(R.array.spinner_region_seoul_dobong);
-                            break;
-                        case 10:
-                            setDongSpinnerAdapterItem(R.array.spinner_region_seoul_dongdaemun);
-                            break;
-                        case 11:
-                            setDongSpinnerAdapterItem(R.array.spinner_region_seoul_dongjag);
-                            break;
-                        case 12:
-                            setDongSpinnerAdapterItem(R.array.spinner_region_seoul_mapo);
-                            break;
-                        case 13:
-                            setDongSpinnerAdapterItem(R.array.spinner_region_seoul_seodaemun);
-                            break;
-                        case 14:
-                            setDongSpinnerAdapterItem(R.array.spinner_region_seoul_seocho);
-                            break;
-                        case 15:
-                            setDongSpinnerAdapterItem(R.array.spinner_region_seoul_seongdong);
-                            break;
-                        case 16:
-                            setDongSpinnerAdapterItem(R.array.spinner_region_seoul_seongbuk);
-                            break;
-                        case 17:
-                            setDongSpinnerAdapterItem(R.array.spinner_region_seoul_songpa);
-                            break;
-                        case 18:
-                            setDongSpinnerAdapterItem(R.array.spinner_region_seoul_yangcheon);
-                            break;
-                        case 19:
-                            setDongSpinnerAdapterItem(R.array.spinner_region_seoul_yeongdeungpo);
-                            break;
-                        case 20:
-                            setDongSpinnerAdapterItem(R.array.spinner_region_seoul_yongsan);
-                            break;
-                        case 21:
-                            setDongSpinnerAdapterItem(R.array.spinner_region_seoul_eunpyeong);
-                            break;
-                        case 22:
-                            setDongSpinnerAdapterItem(R.array.spinner_region_seoul_jongno);
-                            break;
-                        case 23:
-                            setDongSpinnerAdapterItem(R.array.spinner_region_seoul_jung);
-                            break;
-                        case 24:
-                            setDongSpinnerAdapterItem(R.array.spinner_region_seoul_jungnanggu);
-                            break;
-                    }
-                } else {
-
-                }
-
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
-        });
-
     }
 
     private void setSigunguSpinnerAdapterItem(int array_resource) {
@@ -357,17 +249,6 @@ public class Hos_fragment extends Fragment implements View.OnClickListener {
         arrayAdapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item, (String[]) getResources().getStringArray(array_resource));
         arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerSigungu.setAdapter(arrayAdapter);
-    }
-
-    private void setDongSpinnerAdapterItem(int array_resource) {
-        if (arrayAdapter != null) {
-            //spinnerDong.setAdapter(null);
-            arrayAdapter = null;
-        }
-
-        arrayAdapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_item, (String[]) getResources().getStringArray(array_resource));
-        arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        //spinnerDong.setAdapter(arrayAdapter);
     }
 
 }
