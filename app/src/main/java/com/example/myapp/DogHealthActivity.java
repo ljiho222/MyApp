@@ -125,7 +125,7 @@ public class DogHealthActivity extends AppCompatActivity  {
                     Pain pain= snapshot.getValue(Pain.class);
 
                     String tempId=pain.getId();
-                    storageReference=firebaseStorage.getReference().child("health/dog/"+str+"/"+tempId+".JPG");
+                    storageReference=firebaseStorage.getReference().child("health/dog/"+str+"/"+tempId+".jpg");
                     //Log.e("##", String.valueOf(storageReference));
 
                     arrayList.add(pain);

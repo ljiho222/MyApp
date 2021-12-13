@@ -18,22 +18,28 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
 import java.util.ArrayList;
 import java.util.Collections;
 
 public class CatHealthActivity extends AppCompatActivity {
 
+    public static Object context;
+
     //firebase
-    private FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
-    private DatabaseReference databaseReference = firebaseDatabase.getReference();
+    private FirebaseDatabase firebaseDatabase;
+    private DatabaseReference databaseReference;
+    private FirebaseStorage firebaseStorage;
+    public StorageReference storageReference;
 
     //view
     private LinearLayout linearLayout;
     private RecyclerView recyclerView;
     private ScrollView scrollView;
     private TextView text1,text2,text3,text4,text5;
-    private TextView textView1, textView2, textView3;
+    private TextView textView1, textView2, textView3,textView4,textView5,textView6,textView7;
 
     String[] array={"예방의학","","","","","",""};
     String str="";
@@ -48,6 +54,7 @@ public class CatHealthActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cat_health);
 
+        initFirebase();
         initView();
 
         text1.setOnClickListener(listener);
@@ -58,16 +65,24 @@ public class CatHealthActivity extends AppCompatActivity {
 
 
         //기본값
-        array = getResources().getStringArray(R.array.one);
+        array = getResources().getStringArray(R.array.six);
         str="1";
         textSet();
 
         //set recyclerview to adapter
-        painfunc(textView1);
+        initFunc(textView1);
 
     }
 
+    private void initFirebase() {
+        firebaseDatabase = FirebaseDatabase.getInstance();
+        databaseReference = firebaseDatabase.getReference();
+        firebaseStorage=FirebaseStorage.getInstance("gs://myapp-85dd6.appspot.com");
+    }
+
     private void initView() {
+        context = this;
+
         recyclerView=(RecyclerView)findViewById(R.id.recyclerView);
         linearLayout=(LinearLayout)findViewById(R.id.linearLayout);
         text1=(TextView)findViewById(R.id.text1);
@@ -90,9 +105,7 @@ public class CatHealthActivity extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
-    private void painfunc(TextView txt) {
-
-        Log.e("##","str="+str+"name"+txt.getText().toString());
+    private void initFunc(TextView txt) {
 
         arrayList=new ArrayList<>();
         painAdapter=new PainAdapter(arrayList);
@@ -107,15 +120,16 @@ public class CatHealthActivity extends AppCompatActivity {
                 for(DataSnapshot snapshot: dataSnapshot.getChildren()){
                     Pain pain= snapshot.getValue(Pain.class);
 
-                    arrayList.add(pain);
+                    String tempId=pain.getId();
+                    storageReference=firebaseStorage.getReference().child("health/cat/"+str+"/"+tempId+".jpg");
+                    //Log.e("##", String.valueOf(storageReference));
 
+                    arrayList.add(pain);
                 }
-                //Log.e("###", String.valueOf(arrayList.size()));
-                Collections.reverse(arrayList);
+                //Collections.reverse(arrayList);
                 painAdapter.notifyDataSetChanged();
 
             }
-
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
                 Log.e("##","error");
@@ -131,16 +145,16 @@ public class CatHealthActivity extends AppCompatActivity {
         public void onClick(View view) {
             switch (view.getId()){
                 case R.id.text1:
-                    array = getResources().getStringArray(R.array.one);
-                    //Log.e("###",array[0]);
+                    array = getResources().getStringArray(R.array.six);
+                    Log.e("###",array[0]);
                     str="1";
                     textSet();
 
                     break;
 
                 case R.id.text2:
-                    array = getResources().getStringArray(R.array.two);
-                    //Log.e("###",array[0]);
+                    array = getResources().getStringArray(R.array.seven);
+                    Log.e("###",array[0]);
                     str="2";
 
                     textSet();
@@ -148,8 +162,8 @@ public class CatHealthActivity extends AppCompatActivity {
                     break;
 
                 case R.id.text3:
-                    array = getResources().getStringArray(R.array.three);
-                    //Log.e("###",array[0]);
+                    array = getResources().getStringArray(R.array.eight);
+                    Log.e("###",array[0]);
                     str="3";
 
                     textSet();
@@ -157,8 +171,8 @@ public class CatHealthActivity extends AppCompatActivity {
                     break;
 
                 case R.id.text4:
-                    array = getResources().getStringArray(R.array.four);
-                    //Log.e("###",array[0]);
+                    array = getResources().getStringArray(R.array.nine);
+                    Log.e("###",array[0]);
                     str="4";
 
                     textSet();
@@ -166,8 +180,8 @@ public class CatHealthActivity extends AppCompatActivity {
                     break;
 
                 case R.id.text5:
-                    array = getResources().getStringArray(R.array.five);
-                    //Log.e("###",array[0]);
+                    array = getResources().getStringArray(R.array.ten);
+                    Log.e("###",array[0]);
                     str="5";
 
                     textSet();
@@ -184,43 +198,56 @@ public class CatHealthActivity extends AppCompatActivity {
         textView1=(TextView)findViewById(R.id.textView1);
         textView2=(TextView)findViewById(R.id.textView2);
         textView3=(TextView)findViewById(R.id.textView3);
+        textView4=(TextView)findViewById(R.id.textView4);
+        textView5=(TextView)findViewById(R.id.textView5);
+        textView6=(TextView)findViewById(R.id.textView6);
+        textView7=(TextView)findViewById(R.id.textView7);
+
 
         textView1.setText(array[0]);
         textView2.setText(array[1]);
         textView3.setText(array[2]);
+        textView4.setText(array[3]);
+        textView5.setText(array[4]);
+        textView6.setText(array[5]);
+        textView7.setText(array[6]);
 
-        textView1.setOnClickListener(clickListner);
-        textView2.setOnClickListener(clickListner);
-        textView3.setOnClickListener(clickListner);
 
-       /* for(int i=0;i<array.length;i++){
-            //Log.e("##",array[i]);
-            TextView txt = new TextView(getApplicationContext());
-            LinearLayout.LayoutParams p = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-            txt.setLayoutParams(p);
-            txt.setText(array[i]);
-            txt.setTag(i);
-            linearLayout.addView(txt);
-
-            //txt.setOnClickListener(onClickListener);
-
-        }*/
-
+        textView1.setOnClickListener(clickListener);
+        textView2.setOnClickListener(clickListener);
+        textView3.setOnClickListener(clickListener);
+        textView4.setOnClickListener(clickListener);
+        textView5.setOnClickListener(clickListener);
+        textView6.setOnClickListener(clickListener);
+        textView7.setOnClickListener(clickListener);
 
     }
-    View.OnClickListener clickListner = new View.OnClickListener() {
+    View.OnClickListener clickListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
             switch (v.getId()){
                 case R.id.textView1:
-                    painfunc(textView1);
+                    initFunc(textView1);
                     break;
                 case R.id.textView2:
-                    painfunc(textView2);
+                    initFunc(textView2);
                     break;
                 case R.id.textView3:
-                    painfunc(textView3);
+                    initFunc(textView3);
                     break;
+                case R.id.textView4:
+                    initFunc(textView4);
+                    break;
+                case R.id.textView5:
+                    initFunc(textView5);
+                    break;
+                case R.id.textView6:
+                    initFunc(textView6);
+                    break;
+                case R.id.textView7:
+                    initFunc(textView7);
+                    break;
+
 
             }
         }
