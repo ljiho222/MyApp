@@ -75,15 +75,35 @@
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/ic_launcher_background"
+                    android:adjustViewBounds="true"
+                    android:src="@drawable/dog3"
                     android:layout_weight="1"
                     android:padding="10dp"/>
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/ic_launcher_background"
+                    android:adjustViewBounds="true"
+                    android:layout_gravity="center_vertical"
+                    android:src="@drawable/dog4"
                     android:layout_weight="1"
                     android:padding="10dp"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="피부병"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="귓병"/>
             </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
@@ -92,15 +112,35 @@
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/ic_launcher_background"
+                    android:adjustViewBounds="true"
+                    android:src="@drawable/dog2"
+                    android:layout_gravity="center_vertical"
                     android:layout_weight="1"
                     android:padding="10dp"/>
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/ic_launcher_background"
+                    android:adjustViewBounds="true"
+                    android:src="@drawable/dog1"
                     android:layout_weight="1"
                     android:padding="10dp"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:layout_weight="1"
+                    android:text="탈구"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="내과"/>
             </LinearLayout>
         </LinearLayout>
         <LinearLayout
@@ -138,15 +178,35 @@
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/ic_launcher_background"
+                    android:src="@drawable/cat1"
+                    android:adjustViewBounds="true"
                     android:layout_weight="1"
                     android:padding="10dp"/>
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/ic_launcher_background"
+                    android:src="@drawable/cat2"
+                    android:layout_gravity="center"
+                    android:adjustViewBounds="true"
                     android:layout_weight="1"
                     android:padding="10dp"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:layout_weight="1"
+                    android:text="비뇨기"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="내과"/>
             </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
@@ -155,15 +215,34 @@
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/ic_launcher_background"
+                    android:src="@drawable/cat3"
+                    android:adjustViewBounds="true"
                     android:layout_weight="1"
                     android:padding="10dp"/>
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/ic_launcher_background"
+                    android:src="@drawable/cat4"
+                    android:adjustViewBounds="true"
                     android:layout_weight="1"
                     android:padding="10dp"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:layout_weight="1"
+                    android:text="안질환"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="심장병"/>
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>
